@@ -65,10 +65,7 @@
       background: #f6f6f6;
       border: 1px solid #e5e5e5;
       cursor: pointer;
-      transition:
-        background .18s ease,
-        transform .18s ease,
-        border-color .18s ease;
+      transition: background .18s ease, transform .18s ease, border-color .18s ease;
     }
 
     .dw-album-card:hover {
@@ -294,15 +291,8 @@
 
 <div id="dw-app"></div>
 
-<div
-  id="lightbox"
-  class="dw-lightbox"
-  onclick="closeLightbox()"
->
-  <img
-    id="lightboxImage"
-    onclick="event.stopPropagation()"
-  >
+<div id="lightbox" class="dw-lightbox" onclick="closeLightbox()">
+  <img id="lightboxImage" onclick="event.stopPropagation()">
 </div>
 
 <script>
@@ -315,18 +305,9 @@
         "a variation on the discussions series, this one took a while, maybe 5-6 months?<br>glockenspeil as it is the most metal of instruments, and it brings the icelandic vibes as well.",
       credits: `
         <div class="dw-credits-title">credits</div>
-
-        <div class="dw-credit-line">
-          drew waters · guitar, glockenspeil, recording, production
-        </div>
-
-        <div class="dw-credit-line">
-          matt aiken · drums, recording
-        </div>
-
-        <div class="dw-credit-line">
-          recorded in california and new york, 10 april 2026
-        </div>
+        <div class="dw-credit-line">drew waters · guitar, glockenspeil, recording, production</div>
+        <div class="dw-credit-line">matt aiken · drums, recording</div>
+        <div class="dw-credit-line">recorded in california and new york, 10 april 2026</div>
       `,
       tracks: [
         {
@@ -350,6 +331,52 @@
           audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/aiken_waters_redo_005_v3.wav"
         }
       ]
+    },
+    {
+      title: "the lost tapes",
+      year: "2008",
+      cover: "",
+      notes:
+        "early recordings and recovered material from 2008.",
+      credits: `
+        <div class="dw-credits-title">credits</div>
+        <div class="dw-credit-line">drew waters · guitar, recording, production</div>
+        <div class="dw-credit-line">joe shotwell · drums</div>
+      `,
+      tracks: [
+        {
+          title: "aliceish",
+          audio: ""
+        },
+        {
+          title: "stickman's sun",
+          audio: ""
+        },
+        {
+          title: "beatrice",
+          audio: ""
+        },
+        {
+          title: "bluesette",
+          audio: ""
+        },
+        {
+          title: "all the things you are",
+          audio: ""
+        },
+        {
+          title: "stella by starlight",
+          audio: ""
+        },
+        {
+          title: "blues for mitch",
+          audio: ""
+        },
+        {
+          title: "rhythms, changes",
+          audio: ""
+        }
+      ]
     }
   ];
 
@@ -366,13 +393,10 @@
     <div class="dw-subtitle"></div>
 
     <div class="dw-layout">
-
       <div class="dw-album-list" id="albumList"></div>
 
       <div class="dw-player">
-
         <div class="dw-player-top">
-
           <img
             class="dw-cover-large"
             id="coverLarge"
@@ -381,22 +405,25 @@
 
           <div>
             <div class="dw-now-title" id="nowTitle"></div>
-
             <div class="dw-now-album" id="nowAlbum"></div>
-
             <div class="dw-album-notes" id="albumNotes"></div>
           </div>
-
         </div>
 
         <div class="dw-tracks" id="trackList"></div>
-
         <div class="dw-credits" id="albumCredits"></div>
-
       </div>
-
     </div>
   `;
+
+  function pauseOtherAudio(currentAudio) {
+    document.querySelectorAll("audio").forEach(audio => {
+      if (audio !== currentAudio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    });
+  }
 
   function renderAlbums() {
     document.getElementById("albumList").innerHTML =
@@ -443,7 +470,6 @@
       album.tracks.map((track, index) => `
         <div class="dw-track">
           <div class="dw-track-number">${index + 1}</div>
-
           <div class="dw-track-title">${track.title}</div>
 
           ${
@@ -452,6 +478,7 @@
                    controls
                    controlsList="nodownload noplaybackrate"
                    preload="metadata"
+                   onplay="pauseOtherAudio(this)"
                    src="${track.audio}">
                  </audio>`
               : `<div class="dw-no-audio">audio coming soon</div>`
@@ -464,6 +491,11 @@
   }
 
   function selectAlbum(index) {
+    document.querySelectorAll("audio").forEach(audio => {
+      audio.pause();
+      audio.currentTime = 0;
+    });
+
     currentAlbum = index;
     renderAlbums();
     renderPlayer();
