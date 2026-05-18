@@ -1,0 +1,484 @@
+<div id="dw-app"></div>
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    overflow-x: hidden;
+  }
+
+  #dw-app {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: #000;
+    color: #d8d8d8;
+    min-height: 100vh;
+    width: 100vw;
+    padding: 22px;
+    box-sizing: border-box;
+    text-transform: lowercase;
+  }
+
+  .dw-title {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: #f2f2f2;
+  }
+
+  .dw-subtitle {
+    color: #777;
+    font-size: 12px;
+    margin-bottom: 24px;
+  }
+
+  .dw-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 24px;
+  }
+
+  .dw-album-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dw-album-card {
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.06);
+    cursor: pointer;
+  }
+
+  .dw-album-card.active {
+    background: rgba(255,255,255,.08);
+  }
+
+  .dw-album-card img {
+    width: 58px;
+    height: 58px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #111;
+  }
+
+  .dw-album-title {
+    font-size: 12px;
+    font-weight: 400;
+    color: #ddd;
+  }
+
+  .dw-album-meta {
+    font-size: 10px;
+    color: #666;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  .dw-player {
+    background: linear-gradient(145deg, #111, #050505);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 18px;
+    padding: 22px;
+  }
+
+  .dw-player-top {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 24px;
+    align-items: start;
+    margin-bottom: 24px;
+  }
+
+  .dw-cover-large {
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #111;
+  }
+
+  .dw-now-title {
+    font-size: 22px;
+    font-weight: 400;
+    color: #f2f2f2;
+    margin-bottom: 6px;
+  }
+
+  .dw-now-album {
+    font-size: 11px;
+    color: #777;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+
+  .dw-album-notes {
+    font-size: 11px;
+    line-height: 1.65;
+    color: #999;
+    font-weight: 400;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.025);
+    border: 1px solid rgba(255,255,255,.04);
+    margin-bottom: 18px;
+  }
+
+  .dw-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .dw-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 8px 13px;
+    font-size: 10px;
+    font-weight: 400;
+    cursor: pointer;
+    background: rgba(255,255,255,.08);
+    color: #ddd;
+    text-transform: lowercase;
+  }
+
+  .dw-btn:hover {
+    background: rgba(255,255,255,.13);
+  }
+
+  .dw-tracks {
+    margin-top: 16px;
+  }
+
+  .dw-track {
+    display: grid;
+    grid-template-columns: 30px 1fr 54px;
+    gap: 10px;
+    align-items: center;
+    padding: 11px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 400;
+  }
+
+  .dw-track:hover {
+    background: rgba(255,255,255,.04);
+  }
+
+  .dw-track.active {
+    background: rgba(255,255,255,.07);
+  }
+
+  .dw-track-number {
+    font-size: 10px;
+    color: #666;
+    font-weight: 400;
+  }
+
+  .dw-track-title {
+    font-size: 12px;
+    color: #ddd;
+    font-weight: 400;
+  }
+
+  .dw-track-duration {
+    font-size: 10px;
+    color: #666;
+    text-align: right;
+    font-weight: 400;
+  }
+
+  .dw-floating {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    background: rgba(8,8,8,.96);
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: grid;
+    grid-template-columns: 42px 1fr auto;
+    gap: 10px;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  .dw-floating img {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 6px;
+    background: #111;
+  }
+
+  .dw-float-title {
+    font-size: 11px;
+    color: #ddd;
+    font-weight: 400;
+  }
+
+  .dw-float-album {
+    font-size: 9px;
+    color: #666;
+    font-weight: 400;
+  }
+
+  audio {
+    display: none;
+  }
+
+  @media (max-width: 850px) {
+    #dw-app {
+      padding: 16px;
+      padding-bottom: 100px;
+    }
+
+    .dw-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .dw-player-top {
+      grid-template-columns: 1fr;
+    }
+
+    .dw-cover-large {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+    }
+  }
+</style>
+
+<script>
+  const albums = [
+    {
+      title: "discussions for bass and drums volume 5",
+      year: "2026",
+      cover: "",
+      notes: "a variation on the discussions series, this one took a while, maybe 5-6 months?<br><br>xylophone as it's a favorite metal instrument, brings the icelandic vibes as well.",
+      tracks: [
+        {
+          title: "track one",
+          duration: "3:42",
+          audio: ""
+        },
+        {
+          title: "track two",
+          duration: "4:11",
+          audio: ""
+        }
+      ]
+    },
+    {
+      title: "album 2",
+      year: "2025",
+      cover: "",
+      notes: "album notes go here.<br><br>add recording details, personnel, concept, credits, production notes, or anything you want listeners to know.",
+      tracks: [
+        {
+          title: "track one",
+          duration: "3:08",
+          audio: ""
+        },
+        {
+          title: "track two",
+          duration: "4:27",
+          audio: ""
+        }
+      ]
+    },
+    {
+      title: "album 3",
+      year: "2024",
+      cover: "",
+      notes: "album notes go here.<br><br>add recording details, personnel, concept, credits, production notes, or anything you want listeners to know.",
+      tracks: [
+        {
+          title: "track one",
+          duration: "2:59",
+          audio: ""
+        },
+        {
+          title: "track two",
+          duration: "5:14",
+          audio: ""
+        }
+      ]
+    }
+  ];
+
+  let currentAlbum = 0;
+  let currentTrack = 0;
+  let playing = false;
+
+  const app = document.getElementById("dw-app");
+
+  app.innerHTML = `
+    <div class="dw-title">drew waters music</div>
+    <div class="dw-subtitle">albums, compositions, recordings, and selected works.</div>
+
+    <div class="dw-layout">
+      <div class="dw-album-list" id="albumList"></div>
+
+      <div class="dw-player">
+        <div class="dw-player-top">
+          <img class="dw-cover-large" id="coverLarge">
+
+          <div>
+            <div class="dw-now-title" id="nowTitle"></div>
+            <div class="dw-now-album" id="nowAlbum"></div>
+            <div class="dw-album-notes" id="albumNotes"></div>
+
+            <div class="dw-controls">
+              <button class="dw-btn" onclick="previousTrack()">prev</button>
+              <button class="dw-btn" id="playBtn" onclick="togglePlay()">play</button>
+              <button class="dw-btn" onclick="nextTrack()">next</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dw-tracks" id="trackList"></div>
+      </div>
+    </div>
+
+    <div class="dw-floating">
+      <img id="floatCover">
+      <div>
+        <div class="dw-float-title" id="floatTitle"></div>
+        <div class="dw-float-album" id="floatAlbum"></div>
+      </div>
+      <button class="dw-btn" id="floatBtn" onclick="togglePlay()">play</button>
+    </div>
+
+    <audio id="audio"></audio>
+  `;
+
+  const audio = document.getElementById("audio");
+
+  function renderAlbums() {
+    document.getElementById("albumList").innerHTML = albums.map((album, index) => `
+      <div class="dw-album-card ${index === currentAlbum ? "active" : ""}" onclick="selectAlbum(${index})">
+        <img src="${album.cover}">
+        <div>
+          <div class="dw-album-title">${album.title}</div>
+          <div class="dw-album-meta">${album.year} · ${album.tracks.length} tracks</div>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  function renderPlayer() {
+    const album = albums[currentAlbum];
+    const track = album.tracks[currentTrack];
+
+    document.getElementById("coverLarge").src = album.cover;
+    document.getElementById("nowTitle").innerText = track.title;
+    document.getElementById("nowAlbum").innerText = album.title + " · " + album.year;
+
+    document.getElementById("albumNotes").innerHTML = album.notes;
+
+    document.getElementById("floatCover").src = album.cover;
+    document.getElementById("floatTitle").innerText = track.title;
+    document.getElementById("floatAlbum").innerText = album.title;
+
+    document.getElementById("playBtn").innerText = playing ? "pause" : "play";
+    document.getElementById("floatBtn").innerText = playing ? "pause" : "play";
+
+    document.getElementById("trackList").innerHTML = album.tracks.map((track, index) => `
+      <div class="dw-track ${index === currentTrack ? "active" : ""}" onclick="playTrack(${index})">
+        <div class="dw-track-number">${index + 1}</div>
+        <div class="dw-track-title">${track.title}</div>
+        <div class="dw-track-duration">${track.duration || ""}</div>
+      </div>
+    `).join("");
+  }
+
+  function selectAlbum(index) {
+    currentAlbum = index;
+    currentTrack = 0;
+    playing = false;
+    audio.pause();
+
+    const track = albums[currentAlbum].tracks[currentTrack];
+    audio.src = track.audio || "";
+
+    renderAlbums();
+    renderPlayer();
+  }
+
+  function playTrack(index) {
+    currentTrack = index;
+
+    const track = albums[currentAlbum].tracks[currentTrack];
+
+    if (!track || !track.audio) {
+      renderPlayer();
+      return;
+    }
+
+    audio.src = track.audio;
+    audio.play();
+    playing = true;
+
+    renderPlayer();
+  }
+
+  function togglePlay() {
+    const track = albums[currentAlbum].tracks[currentTrack];
+
+    if (!track || !track.audio) {
+      renderPlayer();
+      return;
+    }
+
+    if (!audio.src) {
+      audio.src = track.audio;
+    }
+
+    if (playing) {
+      audio.pause();
+      playing = false;
+    } else {
+      audio.play();
+      playing = true;
+    }
+
+    renderPlayer();
+  }
+
+  function nextTrack() {
+    const album = albums[currentAlbum];
+
+    if (currentTrack < album.tracks.length - 1) {
+      currentTrack++;
+    } else {
+      currentTrack = 0;
+    }
+
+    playTrack(currentTrack);
+  }
+
+  function previousTrack() {
+    const album = albums[currentAlbum];
+
+    if (currentTrack > 0) {
+      currentTrack--;
+    } else {
+      currentTrack = album.tracks.length - 1;
+    }
+
+    playTrack(currentTrack);
+  }
+
+  audio.addEventListener("ended", nextTrack);
+
+  renderAlbums();
+  renderPlayer();
+</script>
