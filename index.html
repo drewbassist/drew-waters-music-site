@@ -123,11 +123,15 @@
 
     .dw-player-top {
       display: grid;
-      grid-template-columns: 170px minmax(400px, 1fr);
+      grid-template-columns: minmax(0, 1fr);
       gap: 24px;
       align-items: start;
       margin-bottom: 24px;
       width: 100%;
+    }
+
+    .dw-player-top.has-cover {
+      grid-template-columns: 170px minmax(0, 1fr);
     }
 
     .dw-cover-large {
@@ -279,12 +283,9 @@
         grid-template-columns: 1fr;
       }
 
-      .dw-player-top {
+      .dw-player-top,
+      .dw-player-top.has-cover {
         grid-template-columns: 1fr;
-      }
-
-      .dw-album-notes {
-        width: 100%;
       }
 
       .dw-cover-large {
@@ -383,38 +384,14 @@ recorded at sharkbite studios, oakland, 2008.
         <div class="dw-credit-line">joe shotwell · drums</div>
       `,
       tracks: [
-        {
-          title: "aliceish",
-          audio: ""
-        },
-        {
-          title: "stickman's sun",
-          audio: ""
-        },
-        {
-          title: "beatrice",
-          audio: ""
-        },
-        {
-          title: "bluesette",
-          audio: ""
-        },
-        {
-          title: "all the things you are",
-          audio: ""
-        },
-        {
-          title: "stella by starlight",
-          audio: ""
-        },
-        {
-          title: "blues for mitch",
-          audio: ""
-        },
-        {
-          title: "rhythms, changes",
-          audio: ""
-        }
+        { title: "aliceish", audio: "" },
+        { title: "stickman's sun", audio: "" },
+        { title: "beatrice", audio: "" },
+        { title: "bluesette", audio: "" },
+        { title: "all the things you are", audio: "" },
+        { title: "stella by starlight", audio: "" },
+        { title: "blues for mitch", audio: "" },
+        { title: "rhythms, changes", audio: "" }
       ]
     }
   ];
@@ -435,7 +412,7 @@ recorded at sharkbite studios, oakland, 2008.
       <div class="dw-album-list" id="albumList"></div>
 
       <div class="dw-player">
-        <div class="dw-player-top">
+        <div class="dw-player-top" id="playerTop">
           <img
             class="dw-cover-large"
             id="coverLarge"
@@ -479,10 +456,7 @@ recorded at sharkbite studios, oakland, 2008.
 
           <div>
             <div class="dw-album-title">${album.title}</div>
-
-            <div class="dw-album-meta">
-              ${album.year} · ${album.tracks.length} tracks
-            </div>
+            <div class="dw-album-meta">${album.year}</div>
           </div>
         </div>
       `).join("");
@@ -491,12 +465,15 @@ recorded at sharkbite studios, oakland, 2008.
   function renderPlayer() {
     const album = albums[currentAlbum];
 
+    const playerTop = document.getElementById("playerTop");
     const coverLarge = document.getElementById("coverLarge");
 
     if (album.cover) {
+      playerTop.classList.add("has-cover");
       coverLarge.src = album.cover;
       coverLarge.style.display = "block";
     } else {
+      playerTop.classList.remove("has-cover");
       coverLarge.removeAttribute("src");
       coverLarge.style.display = "none";
     }
