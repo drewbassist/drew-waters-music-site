@@ -65,7 +65,6 @@
       background: #f6f6f6;
       border: 1px solid #e5e5e5;
       cursor: pointer;
-
       transition:
         background .18s ease,
         transform .18s ease,
@@ -133,7 +132,6 @@
       object-fit: cover;
       border-radius: 12px;
       background: #e8e8e8;
-
       display: block;
       border: none;
       outline: none;
@@ -169,7 +167,7 @@
 
     .dw-track {
       display: grid;
-      grid-template-columns: 30px 1fr 70px 280px;
+      grid-template-columns: 30px 1fr 320px;
       gap: 12px;
       align-items: center;
       padding: 13px 11px;
@@ -191,16 +189,18 @@
       color: #111111;
     }
 
-    .dw-track-duration {
-      font-size: 10px;
-      color: #777777;
-      text-align: right;
-    }
-
     .dw-track audio {
       width: 100%;
       height: 32px;
       opacity: .85;
+    }
+
+    .dw-track audio::-webkit-media-controls-playback-rate-button {
+      display: none;
+    }
+
+    .dw-track audio::-webkit-media-controls-timeline {
+      min-width: 120px;
     }
 
     .dw-no-audio {
@@ -229,7 +229,7 @@
       }
 
       .dw-track {
-        grid-template-columns: 24px 1fr 48px;
+        grid-template-columns: 24px 1fr;
       }
 
       .dw-track audio,
@@ -247,39 +247,34 @@
 <script>
   const albums = [
     {
-  title: "discussions for bass and drums volume 5",
-  year: "2026",
-  cover: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/new+vol5.png",
-  notes:
-    "a variation on the discussions series, this one took a while, maybe 5-6 months?<br>xylophone as it's a favorite metal instrument, brings the icelandic vibes as well.",
-  tracks: [
-    {
-      title: "they call me and i go",
-      duration: "4:12",
-      audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/aiken_Waters_redo_01_v2.wav"
-    },
-    {
-      title: "it is a frozen road",
-      duration: "5:01",
-      audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/aiken_waters_redo_002_v4.wav"
-    },
-    {
-      title: "past midnight, a dust",
-      duration: "3:48",
-      audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/aiken_waters_redo_003_v2.wav"
-    },
-    {
-      title: "of snow caught",
-      duration: "6:14",
-      audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/aiken_waters_redo_004_v2.wav"
-    },
-    {
-      title: "in the rigid wheeltracks",
-      duration: "7:03",
-      audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/aiken_waters_redo_005_v3.wav"
+      title: "discussions for bass and drums volume 5",
+      year: "2026",
+      cover: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/new+vol5.png",
+      notes:
+        "a variation on the discussions series, this one took a while, maybe 5-6 months?<br>xylophone as it's a favorite metal instrument, brings the icelandic vibes as well.",
+      tracks: [
+        {
+          title: "they call me and i go",
+          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/aiken_Waters_redo_01_v2.wav"
+        },
+        {
+          title: "it is a frozen road",
+          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/aiken_waters_redo_002_v4.wav"
+        },
+        {
+          title: "past midnight, a dust",
+          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/aiken_waters_redo_003_v2.wav"
+        },
+        {
+          title: "of snow caught",
+          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/aiken_waters_redo_004_v2.wav"
+        },
+        {
+          title: "in the rigid wheeltracks",
+          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/aiken_waters_redo_005_v3.wav"
+        }
+      ]
     }
-  ]
-}
   ];
 
   let currentAlbum = 0;
@@ -328,7 +323,6 @@
           class="dw-album-card ${index === currentAlbum ? "active" : ""}"
           onclick="selectAlbum(${index})"
         >
-
           ${
             album.cover
               ? `<img src="${album.cover}" alt="${album.title} cover">`
@@ -342,7 +336,6 @@
               ${album.year} · ${album.tracks.length} tracks
             </div>
           </div>
-
         </div>
       `).join("");
   }
@@ -361,36 +354,32 @@
     }
 
     document.getElementById("nowTitle").innerText = album.title;
-
     document.getElementById("nowAlbum").innerText = album.year;
-
     document.getElementById("albumNotes").innerHTML = album.notes;
 
     document.getElementById("trackList").innerHTML =
       album.tracks.map((track, index) => `
         <div class="dw-track">
-
           <div class="dw-track-number">${index + 1}</div>
 
           <div class="dw-track-title">${track.title}</div>
 
-          <div class="dw-track-duration">
-            ${track.duration || ""}
-          </div>
-
           ${
             track.audio
-              ? `<audio controls preload="none" src="${track.audio}"></audio>`
+              ? `<audio
+                   controls
+                   controlsList="nodownload noplaybackrate"
+                   preload="metadata"
+                   src="${track.audio}">
+                 </audio>`
               : `<div class="dw-no-audio">audio coming soon</div>`
           }
-
         </div>
       `).join("");
   }
 
   function selectAlbum(index) {
     currentAlbum = index;
-
     renderAlbums();
     renderPlayer();
   }
