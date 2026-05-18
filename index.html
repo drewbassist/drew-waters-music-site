@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Drew Waters Music</title>
-
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
   <style>
-    html,
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       background: #000;
@@ -67,11 +65,7 @@
       background: rgba(255,255,255,.04);
       border: 1px solid rgba(255,255,255,.06);
       cursor: pointer;
-
-      transition:
-        background .18s ease,
-        transform .18s ease,
-        border-color .18s ease;
+      transition: background .18s ease, transform .18s ease, border-color .18s ease;
     }
 
     .dw-album-card:hover {
@@ -159,58 +153,22 @@
       margin-bottom: 18px;
     }
 
-    .dw-controls {
-      display: flex;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .dw-btn {
-      border: none;
-      border-radius: 999px;
-      padding: 8px 13px;
-      font-size: 10px;
-      cursor: pointer;
-      background: rgba(255,255,255,.08);
-      color: #ddd;
-      text-transform: lowercase;
-
-      transition:
-        background .18s ease,
-        transform .18s ease;
-    }
-
-    .dw-btn:hover {
-      background: rgba(255,255,255,.13);
-      transform: translateY(-1px);
-    }
-
     .dw-tracks {
       margin-top: 16px;
     }
 
     .dw-track {
       display: grid;
-      grid-template-columns: 30px 1fr 54px;
-      gap: 10px;
+      grid-template-columns: 30px 1fr 70px 280px;
+      gap: 12px;
       align-items: center;
-
       padding: 13px 11px;
-
       border-radius: 10px;
       border-bottom: 1px solid rgba(255,255,255,.03);
-
-      cursor: pointer;
-
-      transition: background .18s ease;
     }
 
     .dw-track:hover {
       background: rgba(255,255,255,.04);
-    }
-
-    .dw-track.active {
-      background: rgba(255,255,255,.07);
     }
 
     .dw-track-number {
@@ -229,56 +187,22 @@
       text-align: right;
     }
 
-    .dw-floating {
-      position: fixed;
-      left: 16px;
-      right: 16px;
-      bottom: 16px;
-
-      background: rgba(8,8,8,.82);
-
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-
-      border: 1px solid rgba(255,255,255,.06);
-      border-radius: 12px;
-
-      padding: 10px 14px;
-
-      display: grid;
-      grid-template-columns: 42px 1fr auto;
-      gap: 10px;
-      align-items: center;
-
-      z-index: 9999;
+    .dw-track audio {
+      width: 100%;
+      height: 32px;
+      filter: invert(1) grayscale(1);
+      opacity: .75;
     }
 
-    .dw-floating img {
-      width: 42px;
-      height: 42px;
-      object-fit: cover;
-      border-radius: 6px;
-      background: #111;
-    }
-
-    .dw-float-title {
-      font-size: 11px;
-      color: #ddd;
-    }
-
-    .dw-float-album {
-      font-size: 9px;
-      color: #666;
-    }
-
-    audio {
-      display: none;
+    .dw-no-audio {
+      font-size: 10px;
+      color: #555;
+      text-align: right;
     }
 
     @media (max-width: 850px) {
       #dw-app {
         padding: 16px;
-        padding-bottom: 100px;
       }
 
       .dw-layout {
@@ -293,6 +217,15 @@
         width: 100%;
         height: auto;
         aspect-ratio: 1 / 1;
+      }
+
+      .dw-track {
+        grid-template-columns: 24px 1fr 48px;
+      }
+
+      .dw-track audio,
+      .dw-no-audio {
+        grid-column: 1 / -1;
       }
     }
   </style>
@@ -310,7 +243,6 @@
       cover: "",
       notes:
         "a variation on the discussions series, this one took a while, maybe 5-6 months?<br><br>xylophone as it's a favorite metal instrument, brings the icelandic vibes as well.",
-
       tracks: [
         {
           title: "track one",
@@ -324,14 +256,12 @@
         }
       ]
     },
-
     {
       title: "album 2",
       year: "2025",
       cover: "",
       notes:
         "album notes go here.<br><br>add recording details, personnel, concept, credits, production notes, or anything you want listeners to know.",
-
       tracks: [
         {
           title: "track one",
@@ -348,8 +278,6 @@
   ];
 
   let currentAlbum = 0;
-  let currentTrack = 0;
-  let playing = false;
 
   const app = document.getElementById("dw-app");
 
@@ -361,62 +289,23 @@
     </div>
 
     <div class="dw-layout">
-
       <div class="dw-album-list" id="albumList"></div>
 
       <div class="dw-player">
-
         <div class="dw-player-top">
-
           <img class="dw-cover-large" id="coverLarge">
 
           <div>
-
             <div class="dw-now-title" id="nowTitle"></div>
-
             <div class="dw-now-album" id="nowAlbum"></div>
-
             <div class="dw-album-notes" id="albumNotes"></div>
-
-            <div class="dw-controls">
-              <button class="dw-btn" onclick="previousTrack()">prev</button>
-
-              <button class="dw-btn" id="playBtn" onclick="togglePlay()">
-                play
-              </button>
-
-              <button class="dw-btn" onclick="nextTrack()">next</button>
-            </div>
-
           </div>
-
         </div>
 
         <div class="dw-tracks" id="trackList"></div>
-
       </div>
-
     </div>
-
-    <div class="dw-floating">
-
-      <img id="floatCover">
-
-      <div>
-        <div class="dw-float-title" id="floatTitle"></div>
-        <div class="dw-float-album" id="floatAlbum"></div>
-      </div>
-
-      <button class="dw-btn" id="floatBtn" onclick="togglePlay()">
-        play
-      </button>
-
-    </div>
-
-    <audio id="audio"></audio>
   `;
-
-  const audio = document.getElementById("audio");
 
   function renderAlbums() {
     document.getElementById("albumList").innerHTML =
@@ -425,152 +314,51 @@
           class="dw-album-card ${index === currentAlbum ? "active" : ""}"
           onclick="selectAlbum(${index})"
         >
-
           ${
             album.cover
-              ? `<img src="${album.cover}">`
+              ? `<img src="${album.cover}" alt="${album.title} cover">`
               : `<div class="dw-cover-placeholder"></div>`
           }
 
           <div>
             <div class="dw-album-title">${album.title}</div>
-
             <div class="dw-album-meta">
               ${album.year} · ${album.tracks.length} tracks
             </div>
           </div>
-
         </div>
       `).join("");
   }
 
   function renderPlayer() {
     const album = albums[currentAlbum];
-    const track = album.tracks[currentTrack];
 
     document.getElementById("coverLarge").src = album.cover || "";
-
-    document.getElementById("nowTitle").innerText = track.title;
-
-    document.getElementById("nowAlbum").innerText =
-      album.title + " · " + album.year;
-
+    document.getElementById("nowTitle").innerText = album.title;
+    document.getElementById("nowAlbum").innerText = album.year;
     document.getElementById("albumNotes").innerHTML = album.notes;
-
-    document.getElementById("floatCover").src = album.cover || "";
-
-    document.getElementById("floatTitle").innerText = track.title;
-
-    document.getElementById("floatAlbum").innerText = album.title;
-
-    document.getElementById("playBtn").innerText =
-      playing ? "pause" : "play";
-
-    document.getElementById("floatBtn").innerText =
-      playing ? "pause" : "play";
 
     document.getElementById("trackList").innerHTML =
       album.tracks.map((track, index) => `
-        <div
-          class="dw-track ${index === currentTrack ? "active" : ""}"
-          onclick="playTrack(${index})"
-        >
-
+        <div class="dw-track">
           <div class="dw-track-number">${index + 1}</div>
-
           <div class="dw-track-title">${track.title}</div>
+          <div class="dw-track-duration">${track.duration || ""}</div>
 
-          <div class="dw-track-duration">
-            ${track.duration || ""}
-          </div>
-
+          ${
+            track.audio
+              ? `<audio controls preload="none" src="${track.audio}"></audio>`
+              : `<div class="dw-no-audio">audio coming soon</div>`
+          }
         </div>
       `).join("");
   }
 
   function selectAlbum(index) {
     currentAlbum = index;
-    currentTrack = 0;
-
-    playing = false;
-
-    audio.pause();
-
-    const track = albums[currentAlbum].tracks[currentTrack];
-
-    audio.src = track.audio || "";
-
     renderAlbums();
     renderPlayer();
   }
-
-  function playTrack(index) {
-    currentTrack = index;
-
-    const track = albums[currentAlbum].tracks[currentTrack];
-
-    if (!track || !track.audio) {
-      renderPlayer();
-      return;
-    }
-
-    audio.src = track.audio;
-
-    audio.play();
-
-    playing = true;
-
-    renderPlayer();
-  }
-
-  function togglePlay() {
-    const track = albums[currentAlbum].tracks[currentTrack];
-
-    if (!track || !track.audio) {
-      renderPlayer();
-      return;
-    }
-
-    if (!audio.src) {
-      audio.src = track.audio;
-    }
-
-    if (playing) {
-      audio.pause();
-      playing = false;
-    } else {
-      audio.play();
-      playing = true;
-    }
-
-    renderPlayer();
-  }
-
-  function nextTrack() {
-    const album = albums[currentAlbum];
-
-    if (currentTrack < album.tracks.length - 1) {
-      currentTrack++;
-    } else {
-      currentTrack = 0;
-    }
-
-    playTrack(currentTrack);
-  }
-
-  function previousTrack() {
-    const album = albums[currentAlbum];
-
-    if (currentTrack > 0) {
-      currentTrack--;
-    } else {
-      currentTrack = album.tracks.length - 1;
-    }
-
-    playTrack(currentTrack);
-  }
-
-  audio.addEventListener("ended", nextTrack);
 
   renderAlbums();
   renderPlayer();
