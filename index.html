@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Drew Waters Music</title>
-
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml" />
 
   <style>
-    html,
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       background: #000;
@@ -28,6 +26,7 @@
       min-height: 100vh;
       width: 100vw;
       padding: 22px;
+      padding-bottom: 190px;
       box-sizing: border-box;
     }
 
@@ -42,7 +41,25 @@
     .dw-subtitle {
       color: #777;
       font-size: 12px;
+      margin-bottom: 18px;
+    }
+
+    .dw-search {
+      width: 100%;
+      box-sizing: border-box;
       margin-bottom: 24px;
+      padding: 11px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      color: #ddd;
+      font-size: 12px;
+      outline: none;
+      text-transform: lowercase;
+    }
+
+    .dw-search::placeholder {
+      color: #555;
     }
 
     .dw-layout {
@@ -67,11 +84,7 @@
       background: rgba(255,255,255,.04);
       border: 1px solid rgba(255,255,255,.06);
       cursor: pointer;
-
-      transition:
-        background .18s ease,
-        transform .18s ease,
-        border-color .18s ease;
+      transition: background .18s ease, transform .18s ease, border-color .18s ease;
     }
 
     .dw-album-card:hover {
@@ -109,7 +122,6 @@
       font-size: 10px;
       color: #666;
       margin-top: 4px;
-      font-weight: 400;
     }
 
     .dw-player {
@@ -132,7 +144,7 @@
       height: 170px;
       object-fit: cover;
       border-radius: 12px;
-      background: #111;
+      background: linear-gradient(145deg,#111,#1a1a1a);
     }
 
     .dw-now-title {
@@ -174,10 +186,7 @@
       background: rgba(255,255,255,.08);
       color: #ddd;
       text-transform: lowercase;
-
-      transition:
-        background .18s ease,
-        transform .18s ease;
+      transition: background .18s ease, transform .18s ease;
     }
 
     .dw-btn:hover {
@@ -194,14 +203,10 @@
       grid-template-columns: 30px 1fr 54px;
       gap: 10px;
       align-items: center;
-
       padding: 13px 11px;
-
       border-radius: 10px;
       border-bottom: 1px solid rgba(255,255,255,.03);
-
       cursor: pointer;
-
       transition: background .18s ease;
     }
 
@@ -210,7 +215,7 @@
     }
 
     .dw-track.active {
-      background: rgba(255,255,255,.07);
+      background: rgba(255,255,255,.09);
     }
 
     .dw-track-number {
@@ -221,6 +226,10 @@
     .dw-track-title {
       font-size: 12px;
       color: #b8b8b8;
+    }
+
+    .dw-track.active .dw-track-title {
+      color: #f2f2f2;
     }
 
     .dw-track-duration {
@@ -234,23 +243,18 @@
       left: 16px;
       right: 16px;
       bottom: 16px;
-
-      background: rgba(8,8,8,.82);
-
+      background: rgba(8,8,8,.86);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-
-      border: 1px solid rgba(255,255,255,.06);
-      border-radius: 12px;
-
-      padding: 10px 14px;
-
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 12px 14px;
       display: grid;
       grid-template-columns: 42px 1fr auto;
-      gap: 10px;
+      gap: 12px;
       align-items: center;
-
       z-index: 9999;
+      box-shadow: 0 18px 50px rgba(0,0,0,.45);
     }
 
     .dw-floating img {
@@ -264,11 +268,99 @@
     .dw-float-title {
       font-size: 11px;
       color: #ddd;
+      margin-bottom: 2px;
     }
 
     .dw-float-album {
       font-size: 9px;
       color: #666;
+      margin-bottom: 8px;
+    }
+
+    .dw-transport {
+      display: grid;
+      grid-template-columns: 38px 1fr 38px;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .dw-progress-wrap {
+      display: grid;
+      grid-template-columns: 38px 1fr 38px;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .dw-time {
+      font-size: 9px;
+      color: #666;
+      text-align: center;
+    }
+
+    .dw-range {
+      width: 100%;
+      accent-color: #ddd;
+      cursor: pointer;
+    }
+
+    .dw-volume-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .dw-volume-label {
+      font-size: 9px;
+      color: #666;
+      width: 24px;
+    }
+
+    .dw-waveform {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 24px;
+      margin-top: 8px;
+      opacity: .75;
+    }
+
+    .dw-waveform span {
+      width: 3px;
+      height: 10px;
+      background: rgba(255,255,255,.35);
+      border-radius: 999px;
+      transform-origin: bottom;
+    }
+
+    .dw-waveform span:nth-child(2n) { height: 18px; }
+    .dw-waveform span:nth-child(3n) { height: 7px; }
+    .dw-waveform span:nth-child(5n) { height: 22px; }
+
+    .dw-waveform.playing span {
+      animation: dwPulse .9s infinite ease-in-out;
+    }
+
+    .dw-waveform.playing span:nth-child(2n) {
+      animation-delay: .08s;
+    }
+
+    .dw-waveform.playing span:nth-child(3n) {
+      animation-delay: .16s;
+    }
+
+    @keyframes dwPulse {
+      0%, 100% { transform: scaleY(.65); opacity: .45; }
+      50% { transform: scaleY(1.25); opacity: .95; }
+    }
+
+    .dw-float-notes {
+      font-size: 9px;
+      line-height: 1.5;
+      color: #777;
+      max-height: 34px;
+      overflow: hidden;
+      margin-top: 6px;
     }
 
     audio {
@@ -278,7 +370,7 @@
     @media (max-width: 850px) {
       #dw-app {
         padding: 16px;
-        padding-bottom: 100px;
+        padding-bottom: 220px;
       }
 
       .dw-layout {
@@ -294,6 +386,14 @@
         height: auto;
         aspect-ratio: 1 / 1;
       }
+
+      .dw-floating {
+        grid-template-columns: 38px 1fr;
+      }
+
+      .dw-floating > .dw-floating-buttons {
+        grid-column: 1 / -1;
+      }
     }
   </style>
 </head>
@@ -308,9 +408,9 @@
       title: "discussions for bass and drums volume 5",
       year: "2026",
       cover: "",
+      tags: "bass drums xylophone icelandic metal instrumental",
       notes:
         "a variation on the discussions series, this one took a while, maybe 5-6 months?<br><br>xylophone as it's a favorite metal instrument, brings the icelandic vibes as well.",
-
       tracks: [
         {
           title: "track one",
@@ -324,14 +424,13 @@
         }
       ]
     },
-
     {
       title: "album 2",
       year: "2025",
       cover: "",
+      tags: "composition recording selected works",
       notes:
         "album notes go here.<br><br>add recording details, personnel, concept, credits, production notes, or anything you want listeners to know.",
-
       tracks: [
         {
           title: "track one",
@@ -350,6 +449,7 @@
   let currentAlbum = 0;
   let currentTrack = 0;
   let playing = false;
+  let searchTerm = "";
 
   const app = document.getElementById("dw-app");
 
@@ -360,86 +460,135 @@
       albums, compositions, recordings, and selected works.
     </div>
 
-    <div class="dw-layout">
+    <input
+      class="dw-search"
+      id="searchInput"
+      type="search"
+      placeholder="search albums, tracks, notes, tags..."
+    >
 
+    <div class="dw-layout">
       <div class="dw-album-list" id="albumList"></div>
 
       <div class="dw-player">
-
         <div class="dw-player-top">
-
-          <img class="dw-cover-large" id="coverLarge">
+          <img class="dw-cover-large" id="coverLarge" loading="lazy">
 
           <div>
-
             <div class="dw-now-title" id="nowTitle"></div>
-
             <div class="dw-now-album" id="nowAlbum"></div>
-
             <div class="dw-album-notes" id="albumNotes"></div>
 
             <div class="dw-controls">
               <button class="dw-btn" onclick="previousTrack()">prev</button>
-
-              <button class="dw-btn" id="playBtn" onclick="togglePlay()">
-                play
-              </button>
-
+              <button class="dw-btn" id="playBtn" onclick="togglePlay()">play</button>
               <button class="dw-btn" onclick="nextTrack()">next</button>
             </div>
-
           </div>
-
         </div>
 
         <div class="dw-tracks" id="trackList"></div>
-
       </div>
-
     </div>
 
     <div class="dw-floating">
-
-      <img id="floatCover">
+      <img id="floatCover" loading="lazy">
 
       <div>
         <div class="dw-float-title" id="floatTitle"></div>
         <div class="dw-float-album" id="floatAlbum"></div>
+
+        <div class="dw-progress-wrap">
+          <span class="dw-time" id="currentTime">0:00</span>
+          <input class="dw-range" id="seekBar" type="range" min="0" max="100" value="0">
+          <span class="dw-time" id="durationTime">0:00</span>
+        </div>
+
+        <div class="dw-waveform" id="waveform">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="dw-volume-wrap">
+          <span class="dw-volume-label">vol</span>
+          <input class="dw-range" id="volumeBar" type="range" min="0" max="1" step="0.01" value="0.8">
+        </div>
+
+        <div class="dw-float-notes" id="floatNotes"></div>
       </div>
 
-      <button class="dw-btn" id="floatBtn" onclick="togglePlay()">
-        play
-      </button>
-
+      <div class="dw-floating-buttons">
+        <button class="dw-btn" onclick="previousTrack()">prev</button>
+        <button class="dw-btn" id="floatBtn" onclick="togglePlay()">play</button>
+        <button class="dw-btn" onclick="nextTrack()">next</button>
+      </div>
     </div>
 
-    <audio id="audio"></audio>
+    <audio id="audio" preload="none"></audio>
   `;
 
   const audio = document.getElementById("audio");
+  const seekBar = document.getElementById("seekBar");
+  const volumeBar = document.getElementById("volumeBar");
+  const currentTimeEl = document.getElementById("currentTime");
+  const durationTimeEl = document.getElementById("durationTime");
+  const waveform = document.getElementById("waveform");
+  const searchInput = document.getElementById("searchInput");
+
+  audio.volume = Number(volumeBar.value);
+
+  function getFilteredAlbums() {
+    if (!searchTerm.trim()) {
+      return albums.map((album, index) => ({ album, index }));
+    }
+
+    const q = searchTerm.toLowerCase();
+
+    return albums
+      .map((album, index) => ({ album, index }))
+      .filter(({ album }) => {
+        const trackText = album.tracks.map(track => track.title).join(" ");
+        const searchable = `
+          ${album.title}
+          ${album.year}
+          ${album.notes}
+          ${album.tags || ""}
+          ${trackText}
+        `.toLowerCase();
+
+        return searchable.includes(q);
+      });
+  }
 
   function renderAlbums() {
+    const filtered = getFilteredAlbums();
+
+    if (!filtered.length) {
+      document.getElementById("albumList").innerHTML =
+        `<div class="dw-album-meta">no matching albums.</div>`;
+      return;
+    }
+
     document.getElementById("albumList").innerHTML =
-      albums.map((album, index) => `
+      filtered.map(({ album, index }) => `
         <div
           class="dw-album-card ${index === currentAlbum ? "active" : ""}"
           onclick="selectAlbum(${index})"
         >
-
           ${
             album.cover
-              ? `<img src="${album.cover}">`
+              ? `<img src="${album.cover}" loading="lazy" alt="${album.title} cover">`
               : `<div class="dw-cover-placeholder"></div>`
           }
 
           <div>
             <div class="dw-album-title">${album.title}</div>
-
             <div class="dw-album-meta">
               ${album.year} · ${album.tracks.length} tracks
             </div>
           </div>
-
         </div>
       `).join("");
   }
@@ -449,6 +598,7 @@
     const track = album.tracks[currentTrack];
 
     document.getElementById("coverLarge").src = album.cover || "";
+    document.getElementById("coverLarge").alt = album.title + " cover";
 
     document.getElementById("nowTitle").innerText = track.title;
 
@@ -458,16 +608,16 @@
     document.getElementById("albumNotes").innerHTML = album.notes;
 
     document.getElementById("floatCover").src = album.cover || "";
+    document.getElementById("floatCover").alt = album.title + " cover";
 
     document.getElementById("floatTitle").innerText = track.title;
-
     document.getElementById("floatAlbum").innerText = album.title;
+    document.getElementById("floatNotes").innerHTML = album.notes;
 
-    document.getElementById("playBtn").innerText =
-      playing ? "pause" : "play";
+    document.getElementById("playBtn").innerText = playing ? "pause" : "play";
+    document.getElementById("floatBtn").innerText = playing ? "pause" : "play";
 
-    document.getElementById("floatBtn").innerText =
-      playing ? "pause" : "play";
+    waveform.classList.toggle("playing", playing);
 
     document.getElementById("trackList").innerHTML =
       album.tracks.map((track, index) => `
@@ -475,15 +625,9 @@
           class="dw-track ${index === currentTrack ? "active" : ""}"
           onclick="playTrack(${index})"
         >
-
           <div class="dw-track-number">${index + 1}</div>
-
           <div class="dw-track-title">${track.title}</div>
-
-          <div class="dw-track-duration">
-            ${track.duration || ""}
-          </div>
-
+          <div class="dw-track-duration">${track.duration || ""}</div>
         </div>
       `).join("");
   }
@@ -491,15 +635,14 @@
   function selectAlbum(index) {
     currentAlbum = index;
     currentTrack = 0;
-
     playing = false;
 
     audio.pause();
 
     const track = albums[currentAlbum].tracks[currentTrack];
-
     audio.src = track.audio || "";
 
+    resetProgress();
     renderAlbums();
     renderPlayer();
   }
@@ -510,16 +653,18 @@
     const track = albums[currentAlbum].tracks[currentTrack];
 
     if (!track || !track.audio) {
+      playing = false;
+      resetProgress();
       renderPlayer();
       return;
     }
 
     audio.src = track.audio;
-
     audio.play();
 
     playing = true;
 
+    renderAlbums();
     renderPlayer();
   }
 
@@ -527,6 +672,7 @@
     const track = albums[currentAlbum].tracks[currentTrack];
 
     if (!track || !track.audio) {
+      playing = false;
       renderPlayer();
       return;
     }
@@ -570,7 +716,92 @@
     playTrack(currentTrack);
   }
 
+  function formatTime(seconds) {
+    if (!seconds || isNaN(seconds)) return "0:00";
+
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60).toString().padStart(2, "0");
+
+    return `${mins}:${secs}`;
+  }
+
+  function updateProgress() {
+    if (!audio.duration) return;
+
+    seekBar.value = (audio.currentTime / audio.duration) * 100;
+    currentTimeEl.innerText = formatTime(audio.currentTime);
+  }
+
+  function updateDuration() {
+    durationTimeEl.innerText = formatTime(audio.duration);
+  }
+
+  function resetProgress() {
+    seekBar.value = 0;
+    currentTimeEl.innerText = "0:00";
+    durationTimeEl.innerText = "0:00";
+  }
+
+  seekBar.addEventListener("input", () => {
+    if (!audio.duration) return;
+    audio.currentTime = (seekBar.value / 100) * audio.duration;
+  });
+
+  volumeBar.addEventListener("input", () => {
+    audio.volume = Number(volumeBar.value);
+  });
+
+  audio.addEventListener("timeupdate", updateProgress);
+  audio.addEventListener("loadedmetadata", updateDuration);
   audio.addEventListener("ended", nextTrack);
+
+  audio.addEventListener("pause", () => {
+    playing = false;
+    renderPlayer();
+  });
+
+  audio.addEventListener("play", () => {
+    playing = true;
+    renderPlayer();
+  });
+
+  searchInput.addEventListener("input", event => {
+    searchTerm = event.target.value;
+    renderAlbums();
+  });
+
+  document.addEventListener("keydown", event => {
+    const activeTag = document.activeElement.tagName.toLowerCase();
+
+    if (activeTag === "input" && document.activeElement !== seekBar && document.activeElement !== volumeBar) {
+      return;
+    }
+
+    if (event.code === "Space") {
+      event.preventDefault();
+      togglePlay();
+    }
+
+    if (event.code === "ArrowRight") {
+      nextTrack();
+    }
+
+    if (event.code === "ArrowLeft") {
+      previousTrack();
+    }
+
+    if (event.code === "ArrowUp") {
+      event.preventDefault();
+      audio.volume = Math.min(1, audio.volume + 0.05);
+      volumeBar.value = audio.volume;
+    }
+
+    if (event.code === "ArrowDown") {
+      event.preventDefault();
+      audio.volume = Math.max(0, audio.volume - 0.05);
+      volumeBar.value = audio.volume;
+    }
+  });
 
   renderAlbums();
   renderPlayer();
