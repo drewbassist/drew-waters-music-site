@@ -135,6 +135,13 @@
       display: block;
       border: none;
       outline: none;
+      cursor: zoom-in;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+
+    .dw-cover-large:hover {
+      transform: scale(1.015);
+      opacity: .92;
     }
 
     .dw-now-title {
@@ -209,6 +216,49 @@
       text-align: right;
     }
 
+    .dw-credits {
+      margin-top: 34px;
+      padding-top: 22px;
+      border-top: 1px solid #e4e4e4;
+      font-size: 11px;
+      line-height: 1.8;
+      color: #444444;
+    }
+
+    .dw-credits-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      color: #000000;
+    }
+
+    .dw-credit-line {
+      margin-bottom: 4px;
+    }
+
+    .dw-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.88);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .dw-lightbox img {
+      max-width: 94vw;
+      max-height: 94vh;
+      border-radius: 16px;
+      box-shadow: 0 20px 80px rgba(0,0,0,.45);
+      cursor: zoom-out;
+    }
+
     @media (max-width: 850px) {
       #dw-app {
         padding: 16px;
@@ -244,6 +294,17 @@
 
 <div id="dw-app"></div>
 
+<div
+  id="lightbox"
+  class="dw-lightbox"
+  onclick="closeLightbox()"
+>
+  <img
+    id="lightboxImage"
+    onclick="event.stopPropagation()"
+  >
+</div>
+
 <script>
   const albums = [
     {
@@ -252,6 +313,25 @@
       cover: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/new+vol5.png",
       notes:
         "a variation on the discussions series, this one took a while, maybe 5-6 months?<br>xylophone as it's a favorite metal instrument, brings the icelandic vibes as well.",
+      credits: `
+        <div class="dw-credits-title">personnel / credits</div>
+
+        <div class="dw-credit-line">
+          drew waters · bass, composition, production
+        </div>
+
+        <div class="dw-credit-line">
+          aiken waters · artwork concept
+        </div>
+
+        <div class="dw-credit-line">
+          recorded in california and iceland
+        </div>
+
+        <div class="dw-credit-line">
+          mixed and mastered by drew waters
+        </div>
+      `,
       tracks: [
         {
           title: "they call me and i go",
@@ -297,7 +377,11 @@
 
         <div class="dw-player-top">
 
-          <img class="dw-cover-large" id="coverLarge">
+          <img
+            class="dw-cover-large"
+            id="coverLarge"
+            onclick="openLightbox()"
+          >
 
           <div>
             <div class="dw-now-title" id="nowTitle"></div>
@@ -310,6 +394,8 @@
         </div>
 
         <div class="dw-tracks" id="trackList"></div>
+
+        <div class="dw-credits" id="albumCredits"></div>
 
       </div>
 
@@ -376,6 +462,9 @@
           }
         </div>
       `).join("");
+
+    document.getElementById("albumCredits").innerHTML =
+      album.credits || "";
   }
 
   function selectAlbum(index) {
@@ -383,6 +472,25 @@
     renderAlbums();
     renderPlayer();
   }
+
+  function openLightbox() {
+    const album = albums[currentAlbum];
+
+    if (!album.cover) return;
+
+    document.getElementById("lightboxImage").src = album.cover;
+    document.getElementById("lightbox").style.display = "flex";
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      closeLightbox();
+    }
+  });
 
   renderAlbums();
   renderPlayer();
