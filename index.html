@@ -84,6 +84,7 @@
       object-fit: cover;
       border-radius: 8px;
       background: #111;
+      display: block;
     }
 
     .dw-cover-placeholder {
@@ -127,6 +128,10 @@
       object-fit: cover;
       border-radius: 12px;
       background: #111;
+
+      display: block;
+      border: none;
+      outline: none;
     }
 
     .dw-now-title {
@@ -283,29 +288,36 @@
 
   app.innerHTML = `
     <div class="dw-title">drew waters music</div>
+
     <br>
     <br>
 
-    <div class="dw-subtitle">
-    
-    </div>
+    <div class="dw-subtitle"></div>
 
     <div class="dw-layout">
+
       <div class="dw-album-list" id="albumList"></div>
 
       <div class="dw-player">
+
         <div class="dw-player-top">
+
           <img class="dw-cover-large" id="coverLarge">
 
           <div>
             <div class="dw-now-title" id="nowTitle"></div>
+
             <div class="dw-now-album" id="nowAlbum"></div>
+
             <div class="dw-album-notes" id="albumNotes"></div>
           </div>
+
         </div>
 
         <div class="dw-tracks" id="trackList"></div>
+
       </div>
+
     </div>
   `;
 
@@ -316,6 +328,7 @@
           class="dw-album-card ${index === currentAlbum ? "active" : ""}"
           onclick="selectAlbum(${index})"
         >
+
           ${
             album.cover
               ? `<img src="${album.cover}" alt="${album.title} cover">`
@@ -324,10 +337,12 @@
 
           <div>
             <div class="dw-album-title">${album.title}</div>
+
             <div class="dw-album-meta">
               ${album.year} · ${album.tracks.length} tracks
             </div>
           </div>
+
         </div>
       `).join("");
   }
@@ -335,29 +350,47 @@
   function renderPlayer() {
     const album = albums[currentAlbum];
 
-    document.getElementById("coverLarge").src = album.cover || "";
+    const coverLarge = document.getElementById("coverLarge");
+
+    if (album.cover) {
+      coverLarge.src = album.cover;
+      coverLarge.style.display = "block";
+    } else {
+      coverLarge.removeAttribute("src");
+      coverLarge.style.display = "none";
+    }
+
     document.getElementById("nowTitle").innerText = album.title;
+
     document.getElementById("nowAlbum").innerText = album.year;
+
     document.getElementById("albumNotes").innerHTML = album.notes;
 
     document.getElementById("trackList").innerHTML =
       album.tracks.map((track, index) => `
         <div class="dw-track">
+
           <div class="dw-track-number">${index + 1}</div>
+
           <div class="dw-track-title">${track.title}</div>
-          <div class="dw-track-duration">${track.duration || ""}</div>
+
+          <div class="dw-track-duration">
+            ${track.duration || ""}
+          </div>
 
           ${
             track.audio
               ? `<audio controls preload="none" src="${track.audio}"></audio>`
               : `<div class="dw-no-audio">audio coming soon</div>`
           }
+
         </div>
       `).join("");
   }
 
   function selectAlbum(index) {
     currentAlbum = index;
+
     renderAlbums();
     renderPlayer();
   }
