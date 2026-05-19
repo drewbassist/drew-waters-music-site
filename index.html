@@ -694,8 +694,14 @@ recorded in los angeles, june 2025.
     document.getElementById("nowAlbum").innerText = album.year;
     document.getElementById("albumNotes").innerHTML = album.notes;
 
-    document.getElementById("trackList").innerHTML =
-      album.tracks.map((track, index) => `
+if (window.innerWidth <= 850) {
+  document.getElementById("trackList").innerHTML = "";
+  document.getElementById("albumCredits").innerHTML = "";
+  return;
+}
+
+document.getElementById("trackList").innerHTML =
+  album.tracks.map((track, index) =>`
         <div class="dw-track">
           <div class="dw-track-number">${index + 1}</div>
           <div class="dw-track-title">${track.title}</div>
