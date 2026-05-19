@@ -609,37 +609,32 @@ recorded in los angeles, june 2025.
   }
 
   function playNextTrack(albumIndex, trackIndex) {
-    let nextAlbumIndex = albumIndex;
-    let nextTrackIndex = trackIndex + 1;
+  const album = albums[albumIndex];
+  const nextTrackIndex = trackIndex + 1;
 
-    while (nextAlbumIndex < albums.length) {
-      const nextAlbum = albums[nextAlbumIndex];
-
-      while (nextTrackIndex < nextAlbum.tracks.length) {
-        if (nextAlbum.tracks[nextTrackIndex].audio) {
-          selectAlbum(nextAlbumIndex);
-
-          setTimeout(() => {
-            const nextAudio = document.querySelector(
-              `audio[data-album-index="${nextAlbumIndex}"][data-track-index="${nextTrackIndex}"]`
-            );
-
-            if (nextAudio) {
-              pauseOtherAudio(nextAudio);
-              nextAudio.play().catch(() => {});
-            }
-          }, 120);
-
-          return;
-        }
-
-        nextTrackIndex++;
-      }
-
-      nextAlbumIndex++;
-      nextTrackIndex = 0;
-    }
+  if (!album || nextTrackIndex >= album.tracks.length) {
+    return;
   }
+
+  const nextTrack = album.tracks[nextTrackIndex];
+
+  if (!nextTrack || !nextTrack.audio) {
+    return;
+  }
+
+  setTimeout(() => {
+    const visibleAudios = Array.from(document.querySelectorAll(
+      `audio[data-album-index="${albumIndex}"][data-track-index="${nextTrackIndex}"]`
+    )).filter(audio => audio.offsetParent !== null);
+
+    const nextAudio = visibleAudios[0];
+
+    if (nextAudio) {
+      pauseOtherAudio(nextAudio);
+      nextAudio.play().catch(() => {});
+    }
+  }, 120);
+}
 
   function renderAlbums() {
     document.getElementById("albumList").innerHTML =
