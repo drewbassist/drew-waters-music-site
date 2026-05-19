@@ -712,15 +712,30 @@ recorded in los angeles, june 2025.
   }
 
   function selectAlbum(index) {
-    document.querySelectorAll("audio").forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
+  document.querySelectorAll("audio").forEach(audio => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
 
-    currentAlbum = index;
-    renderAlbums();
-    renderPlayer();
+  currentAlbum = index;
+
+  renderAlbums();
+  renderPlayer();
+
+  if (window.innerWidth <= 850) {
+    setTimeout(() => {
+      const activeCard =
+        document.querySelector(".dw-album-card.active");
+
+      if (activeCard) {
+        activeCard.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }, 0);
   }
+}
 
   function openLightbox() {
     const album = albums[currentAlbum];
