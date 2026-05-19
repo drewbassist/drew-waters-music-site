@@ -29,15 +29,6 @@
       box-sizing: border-box;
     }
 
-    .dw-header {
-      position: sticky;
-      top: 0;
-      z-index: 9999;
-      background: #ffffff;
-      padding-bottom: 18px;
-      margin-bottom: 18px;
-    }
-
     .dw-title {
       font-size: 24px;
       font-weight: 400;
@@ -46,12 +37,17 @@
       letter-spacing: 0.02em;
     }
 
+    .dw-subtitle {
+      color: #666666;
+      font-size: 12px;
+      margin-bottom: 24px;
+    }
+
     .dw-layout {
       display: grid;
       grid-template-columns: 260px minmax(0, 1fr);
       gap: 24px;
       width: 100%;
-      align-items: start;
     }
 
     .dw-album-list {
@@ -59,13 +55,6 @@
       flex-direction: column;
       gap: 12px;
       min-width: 0;
-
-      position: sticky;
-      top: 88px;
-      align-self: start;
-      max-height: calc(100vh - 120px);
-      overflow-y: auto;
-      padding-right: 6px;
     }
 
     .dw-album-card {
@@ -294,12 +283,6 @@
         grid-template-columns: 1fr;
       }
 
-      .dw-album-list {
-        position: static;
-        max-height: none;
-        overflow: visible;
-      }
-
       .dw-player-top,
       .dw-player-top.has-cover {
         grid-template-columns: 1fr;
@@ -332,42 +315,7 @@
 </div>
 
 <script>
-  const albums = [
-    // KEEP YOUR EXISTING ALBUMS ARRAY EXACTLY AS IS
-  ];
-
-  let currentAlbum = 0;
-
-  const app = document.getElementById("dw-app");
-
-  app.innerHTML = `
-    <div class="dw-header">
-      <div class="dw-title">drew waters music</div>
-    </div>
-
-    <div class="dw-layout">
-      <div class="dw-album-list" id="albumList"></div>
-
-      <div class="dw-player">
-        <div class="dw-player-top" id="playerTop">
-          <img
-            class="dw-cover-large"
-            id="coverLarge"
-            onclick="openLightbox()"
-          >
-
-          <div>
-            <div class="dw-now-title" id="nowTitle"></div>
-            <div class="dw-now-album" id="nowAlbum"></div>
-            <div class="dw-album-notes" id="albumNotes"></div>
-          </div>
-        </div>
-
-        <div class="dw-tracks" id="trackList"></div>
-        <div class="dw-credits" id="albumCredits"></div>
-      </div>
-    </div>
-  `;
+  // paste your original albums array back here exactly as before
 </script>
 
 </body>
