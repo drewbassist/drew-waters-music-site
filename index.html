@@ -28,6 +28,14 @@
       padding: 22px;
       box-sizing: border-box;
     }
+    .dw-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #ffffff;
+  padding-top: 4px;
+  padding-bottom: 12px;
+}
 
     .dw-title {
       font-size: 24px;
@@ -539,12 +547,10 @@ recorded in los angeles, june 2025.
   const app = document.getElementById("dw-app");
 
   app.innerHTML = `
-    <div class="dw-title">drew waters music</div>
-
-    <br>
-    <br>
-
-    <div class="dw-subtitle"></div>
+    <div class="dw-header">
+  <div class="dw-title">drew waters music</div>
+  <div class="dw-subtitle">...</div>
+</div>
 
     <div class="dw-layout">
       <div class="dw-album-list" id="albumList"></div>
