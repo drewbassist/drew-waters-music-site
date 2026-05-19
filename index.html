@@ -567,7 +567,8 @@ recorded in los angeles, june 2025.
     }
   ];
 
-  let currentAlbum = -1;
+  let currentAlbum = 0;
+  let mobileOpenAlbum = -1;
 
   const app = document.getElementById("dw-app");
 
@@ -609,39 +610,41 @@ recorded in los angeles, june 2025.
   }
 
   function playNextTrack(albumIndex, trackIndex) {
-  const album = albums[albumIndex];
-  const nextTrackIndex = trackIndex + 1;
+    const album = albums[albumIndex];
+    const nextTrackIndex = trackIndex + 1;
 
-  if (!album || nextTrackIndex >= album.tracks.length) {
-    return;
-  }
-
-  const nextTrack = album.tracks[nextTrackIndex];
-
-  if (!nextTrack || !nextTrack.audio) {
-    return;
-  }
-
-  setTimeout(() => {
-    const visibleAudios = Array.from(document.querySelectorAll(
-      `audio[data-album-index="${albumIndex}"][data-track-index="${nextTrackIndex}"]`
-    )).filter(audio => audio.offsetParent !== null);
-
-    const nextAudio = visibleAudios[0];
-
-    if (nextAudio) {
-      pauseOtherAudio(nextAudio);
-      nextAudio.play().catch(() => {});
+    if (!album || nextTrackIndex >= album.tracks.length) {
+      return;
     }
-  }, 120);
-}
+
+    const nextTrack = album.tracks[nextTrackIndex];
+
+    if (!nextTrack || !nextTrack.audio) {
+      return;
+    }
+
+    setTimeout(() => {
+      const visibleAudios = Array.from(document.querySelectorAll(
+        `audio[data-album-index="${albumIndex}"][data-track-index="${nextTrackIndex}"]`
+      )).filter(audio => audio.offsetParent !== null);
+
+      const nextAudio = visibleAudios[0];
+
+      if (nextAudio) {
+        pauseOtherAudio(nextAudio);
+        nextAudio.play().catch(() => {});
+      }
+    }, 120);
+  }
 
   function renderAlbums() {
+    const activeAlbumIndex = window.innerWidth <= 850 ? mobileOpenAlbum : currentAlbum;
+
     document.getElementById("albumList").innerHTML =
       albums.map((album, index) => `
         <div class="dw-album-wrap">
           <div
-            class="dw-album-card ${index === currentAlbum ? "active" : ""}"
+            class="dw-album-card ${index === activeAlbumIndex ? "active" : ""}"
             onclick="selectAlbum(${index})"
           >
             ${
@@ -657,7 +660,7 @@ recorded in los angeles, june 2025.
           </div>
 
           ${
-            index === currentAlbum
+            window.innerWidth <= 850 && index === mobileOpenAlbum
               ? `
                 <div class="dw-mobile-player">
                   ${
@@ -705,6 +708,10 @@ recorded in los angeles, june 2025.
 
   function renderPlayer() {
     const album = albums[currentAlbum];
+
+    if (!album) {
+      return;
+    }
 
     const playerTop = document.getElementById("playerTop");
     const coverLarge = document.getElementById("coverLarge");
@@ -762,15 +769,17 @@ recorded in los angeles, june 2025.
       audio.currentTime = 0;
     });
 
-    currentAlbum = index;
-
-    renderAlbums();
-    renderPlayer();
-
     if (window.innerWidth <= 850) {
+      if (mobileOpenAlbum === index) {
+        mobileOpenAlbum = -1;
+      } else {
+        mobileOpenAlbum = index;
+      }
+
+      renderAlbums();
+
       setTimeout(() => {
-        const activeCard =
-          document.querySelector(".dw-album-card.active");
+        const activeCard = document.querySelector(".dw-album-card.active");
 
         if (activeCard) {
           activeCard.scrollIntoView({
@@ -779,13 +788,20 @@ recorded in los angeles, june 2025.
           });
         }
       }, 0);
+
+      return;
     }
+
+    currentAlbum = index;
+
+    renderAlbums();
+    renderPlayer();
   }
 
   function openLightbox() {
     const album = albums[currentAlbum];
 
-    if (!album.cover) return;
+    if (!album || !album.cover) return;
 
     document.getElementById("lightboxImage").src = album.cover;
     document.getElementById("lightbox").style.display = "flex";
@@ -801,8 +817,19 @@ recorded in los angeles, june 2025.
     }
   });
 
+  window.addEventListener("resize", () => {
+    renderAlbums();
+
+    if (window.innerWidth > 850) {
+      renderPlayer();
+    }
+  });
+
   renderAlbums();
-  renderPlayer();
+
+  if (window.innerWidth > 850) {
+    renderPlayer();
+  }
 </script>
 
 </body>
