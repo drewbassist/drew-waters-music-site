@@ -23,36 +23,34 @@
     }
 
     #dw-app {
-  min-height: 100vh;
-  width: 100vw;
-  padding-left: 22px;
-  padding-right: 22px;
-  padding-bottom: 22px;
-  box-sizing: border-box;
-}
+      min-height: 100vh;
+      width: 100vw;
+      padding-left: 22px;
+      padding-right: 22px;
+      padding-bottom: 22px;
+      box-sizing: border-box;
+    }
 
-   .dw-title {
-  font-size: 24px;
-  font-weight: 400;
-  color: #000000;
-  letter-spacing: 0.02em;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
-
-  background: #ffffff;
-  padding: 22px 22px 12px 22px;
-  box-sizing: border-box;
-}
+    .dw-title {
+      font-size: 24px;
+      font-weight: 400;
+      color: #000000;
+      letter-spacing: 0.02em;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: #ffffff;
+      padding: 22px 22px 12px 22px;
+      box-sizing: border-box;
+    }
 
     .dw-subtitle {
-  color: #666666;
-  font-size: 12px;
-  margin-bottom: 72px;
-}
+      color: #666666;
+      font-size: 12px;
+      margin-bottom: 72px;
+    }
 
     .dw-layout {
       display: grid;
@@ -479,7 +477,7 @@ i load them into the zoia pedal via micro sd card.
 
 within the zoia, i create a 16 step sequencer, triggering a bass, snare and hihat sound for the first three voices. the last voice is a guitar or saxophone sample that i pitch shift, run through the zoia delay, reverb, reverse and other on-board mangling. this one is not sequenced. i "play" it live from the zoia box into pro tools.
 `,
-credits: `
+      credits: `
         <div class="dw-credits-title">credits</div>
         <div class="dw-credit-line">drew waters · zoia, guitar, recording</div>
         <div class="dw-credit-line">matt aiken · drums and percussion</div>
@@ -610,6 +608,39 @@ recorded in los angeles, june 2025.
     });
   }
 
+  function playNextTrack(albumIndex, trackIndex) {
+    let nextAlbumIndex = albumIndex;
+    let nextTrackIndex = trackIndex + 1;
+
+    while (nextAlbumIndex < albums.length) {
+      const nextAlbum = albums[nextAlbumIndex];
+
+      while (nextTrackIndex < nextAlbum.tracks.length) {
+        if (nextAlbum.tracks[nextTrackIndex].audio) {
+          selectAlbum(nextAlbumIndex);
+
+          setTimeout(() => {
+            const nextAudio = document.querySelector(
+              `audio[data-album-index="${nextAlbumIndex}"][data-track-index="${nextTrackIndex}"]`
+            );
+
+            if (nextAudio) {
+              pauseOtherAudio(nextAudio);
+              nextAudio.play().catch(() => {});
+            }
+          }, 120);
+
+          return;
+        }
+
+        nextTrackIndex++;
+      }
+
+      nextAlbumIndex++;
+      nextTrackIndex = 0;
+    }
+  }
+
   function renderAlbums() {
     document.getElementById("albumList").innerHTML =
       albums.map((album, index) => `
@@ -656,7 +687,10 @@ recorded in los angeles, june 2025.
                                  controls
                                  controlsList="nodownload noplaybackrate"
                                  preload="metadata"
+                                 data-album-index="${index}"
+                                 data-track-index="${trackIndex}"
                                  onplay="pauseOtherAudio(this)"
+                                 onended="playNextTrack(${index}, ${trackIndex})"
                                  src="${track.audio}">
                                </audio>`
                             : `<div class="dw-no-audio">audio coming soon</div>`
@@ -694,14 +728,14 @@ recorded in los angeles, june 2025.
     document.getElementById("nowAlbum").innerText = album.year;
     document.getElementById("albumNotes").innerHTML = album.notes;
 
-if (window.innerWidth <= 850) {
-  document.getElementById("trackList").innerHTML = "";
-  document.getElementById("albumCredits").innerHTML = "";
-  return;
-}
+    if (window.innerWidth <= 850) {
+      document.getElementById("trackList").innerHTML = "";
+      document.getElementById("albumCredits").innerHTML = "";
+      return;
+    }
 
-document.getElementById("trackList").innerHTML =
-  album.tracks.map((track, index) =>`
+    document.getElementById("trackList").innerHTML =
+      album.tracks.map((track, index) => `
         <div class="dw-track">
           <div class="dw-track-number">${index + 1}</div>
           <div class="dw-track-title">${track.title}</div>
@@ -712,7 +746,10 @@ document.getElementById("trackList").innerHTML =
                    controls
                    controlsList="nodownload noplaybackrate"
                    preload="metadata"
+                   data-album-index="${currentAlbum}"
+                   data-track-index="${index}"
                    onplay="pauseOtherAudio(this)"
+                   onended="playNextTrack(${currentAlbum}, ${index})"
                    src="${track.audio}">
                  </audio>`
               : `<div class="dw-no-audio">audio coming soon</div>`
@@ -725,30 +762,30 @@ document.getElementById("trackList").innerHTML =
   }
 
   function selectAlbum(index) {
-  document.querySelectorAll("audio").forEach(audio => {
-    audio.pause();
-    audio.currentTime = 0;
-  });
+    document.querySelectorAll("audio").forEach(audio => {
+      audio.pause();
+      audio.currentTime = 0;
+    });
 
-  currentAlbum = index;
+    currentAlbum = index;
 
-  renderAlbums();
-  renderPlayer();
+    renderAlbums();
+    renderPlayer();
 
-  if (window.innerWidth <= 850) {
-    setTimeout(() => {
-      const activeCard =
-        document.querySelector(".dw-album-card.active");
+    if (window.innerWidth <= 850) {
+      setTimeout(() => {
+        const activeCard =
+          document.querySelector(".dw-album-card.active");
 
-      if (activeCard) {
-        activeCard.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-    }, 0);
+        if (activeCard) {
+          activeCard.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      }, 0);
+    }
   }
-}
 
   function openLightbox() {
     const album = albums[currentAlbum];
