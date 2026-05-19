@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,21 +46,19 @@
 
     .dw-layout {
       display: grid;
-      grid-template-columns: 260px minmax(0, 1fr);
+      grid-template-columns: 260px 1fr;
       gap: 24px;
-      width: 100%;
     }
 
     .dw-album-list {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      min-width: 0;
     }
 
     .dw-album-card {
       display: grid;
-      grid-template-columns: 58px minmax(0, 1fr);
+      grid-template-columns: 58px 1fr;
       gap: 12px;
       align-items: center;
       padding: 10px;
@@ -67,7 +66,11 @@
       background: #f6f6f6;
       border: 1px solid #e5e5e5;
       cursor: pointer;
-      transition: background .18s ease, transform .18s ease, border-color .18s ease;
+
+      transition:
+        background .18s ease,
+        transform .18s ease,
+        border-color .18s ease;
     }
 
     .dw-album-card:hover {
@@ -101,7 +104,6 @@
       font-size: 12px;
       font-weight: 400;
       color: #111111;
-      overflow-wrap: break-word;
     }
 
     .dw-album-meta {
@@ -116,22 +118,14 @@
       border: 1px solid #e4e4e4;
       border-radius: 18px;
       padding: 22px;
-      min-width: 0;
-      width: 100%;
-      box-sizing: border-box;
     }
 
     .dw-player-top {
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: 170px 1fr;
       gap: 24px;
       align-items: start;
       margin-bottom: 24px;
-      width: 100%;
-    }
-
-    .dw-player-top.has-cover {
-      grid-template-columns: 170px minmax(0, 1fr);
     }
 
     .dw-cover-large {
@@ -140,16 +134,10 @@
       object-fit: cover;
       border-radius: 12px;
       background: #e8e8e8;
+
       display: block;
       border: none;
       outline: none;
-      cursor: zoom-in;
-      transition: transform .18s ease, opacity .18s ease;
-    }
-
-    .dw-cover-large:hover {
-      transform: scale(1.015);
-      opacity: .92;
     }
 
     .dw-now-title {
@@ -157,7 +145,6 @@
       font-weight: 400;
       color: #000000;
       margin-bottom: 6px;
-      overflow-wrap: break-word;
     }
 
     .dw-now-album {
@@ -167,19 +154,14 @@
     }
 
     .dw-album-notes {
-      width: 100%;
-      box-sizing: border-box;
       font-size: 11px;
-      line-height: 1.55;
+      line-height: 1.7;
       color: #444444;
-      padding: 18px 20px;
-      border-radius: 12px;
+      padding: 12px;
+      border-radius: 10px;
       background: #f3f3f3;
       border: 1px solid #e2e2e2;
       margin-bottom: 18px;
-      white-space: normal;
-      overflow-wrap: break-word;
-      word-break: normal;
     }
 
     .dw-tracks {
@@ -188,7 +170,7 @@
 
     .dw-track {
       display: grid;
-      grid-template-columns: 30px minmax(0, 1fr) 320px;
+      grid-template-columns: 30px 1fr 70px 280px;
       gap: 12px;
       align-items: center;
       padding: 13px 11px;
@@ -208,7 +190,12 @@
     .dw-track-title {
       font-size: 12px;
       color: #111111;
-      overflow-wrap: break-word;
+    }
+
+    .dw-track-duration {
+      font-size: 10px;
+      color: #777777;
+      text-align: right;
     }
 
     .dw-track audio {
@@ -217,61 +204,10 @@
       opacity: .85;
     }
 
-    .dw-track audio::-webkit-media-controls-playback-rate-button {
-      display: none;
-    }
-
-    .dw-track audio::-webkit-media-controls-timeline {
-      min-width: 120px;
-    }
-
     .dw-no-audio {
       font-size: 10px;
       color: #999999;
       text-align: right;
-    }
-
-    .dw-credits {
-      margin-top: 18px;
-      padding-top: 22px;
-      border-top: none;
-      font-size: 11px;
-      line-height: 1.8;
-      color: #444444;
-    }
-
-    .dw-credits-title {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-      color: #000000;
-    }
-
-    .dw-credit-line {
-      margin-bottom: 4px;
-    }
-
-    .dw-lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.88);
-      z-index: 99999;
-      align-items: center;
-      justify-content: center;
-      padding: 32px;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-    }
-
-    .dw-lightbox img {
-      max-width: 94vw;
-      max-height: 94vh;
-      border-radius: 16px;
-      box-shadow: 0 20px 80px rgba(0,0,0,.45);
-      cursor: zoom-out;
     }
 
     @media (max-width: 850px) {
@@ -283,8 +219,7 @@
         grid-template-columns: 1fr;
       }
 
-      .dw-player-top,
-      .dw-player-top.has-cover {
+      .dw-player-top {
         grid-template-columns: 1fr;
       }
 
@@ -295,7 +230,7 @@
       }
 
       .dw-track {
-        grid-template-columns: 24px 1fr;
+        grid-template-columns: 24px 1fr 48px;
       }
 
       .dw-track audio,
@@ -310,12 +245,159 @@
 
 <div id="dw-app"></div>
 
-<div id="lightbox" class="dw-lightbox" onclick="closeLightbox()">
-  <img id="lightboxImage" onclick="event.stopPropagation()">
-</div>
-
 <script>
-  // paste your original albums array back here exactly as before
+  const albums = [
+    {
+  title: "discussions for bass and drums volume 5",
+  year: "2026",
+  cover: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/new+vol5.png",
+  notes:
+    "a variation on the discussions series, this one took a while, maybe 5-6 months?<br>xylophone as it's a favorite metal instrument, brings the icelandic vibes as well.",
+  tracks: [
+    {
+      title: "they call me and i go",
+      duration: "4:12",
+      audio: ""
+    },
+    {
+      title: "it is a frozen road",
+      duration: "5:01",
+      audio: ""
+    },
+    {
+      title: "past midnight, a dust",
+      duration: "3:48",
+      audio: ""
+    },
+    {
+      title: "of snow caught",
+      duration: "6:14",
+      audio: ""
+    },
+    {
+      title: "in the rigid wheeltracks",
+      duration: "7:03",
+      audio: ""
+    }
+  ]
+}
+  ];
+
+  let currentAlbum = 0;
+
+  const app = document.getElementById("dw-app");
+
+  app.innerHTML = `
+    <div class="dw-title">drew waters music</div>
+
+    <br>
+    <br>
+
+    <div class="dw-subtitle"></div>
+
+    <div class="dw-layout">
+
+      <div class="dw-album-list" id="albumList"></div>
+
+      <div class="dw-player">
+
+        <div class="dw-player-top">
+
+          <img class="dw-cover-large" id="coverLarge">
+
+          <div>
+            <div class="dw-now-title" id="nowTitle"></div>
+
+            <div class="dw-now-album" id="nowAlbum"></div>
+
+            <div class="dw-album-notes" id="albumNotes"></div>
+          </div>
+
+        </div>
+
+        <div class="dw-tracks" id="trackList"></div>
+
+      </div>
+
+    </div>
+  `;
+
+  function renderAlbums() {
+    document.getElementById("albumList").innerHTML =
+      albums.map((album, index) => `
+        <div
+          class="dw-album-card ${index === currentAlbum ? "active" : ""}"
+          onclick="selectAlbum(${index})"
+        >
+
+          ${
+            album.cover
+              ? `<img src="${album.cover}" alt="${album.title} cover">`
+              : `<div class="dw-cover-placeholder"></div>`
+          }
+
+          <div>
+            <div class="dw-album-title">${album.title}</div>
+
+            <div class="dw-album-meta">
+              ${album.year} · ${album.tracks.length} tracks
+            </div>
+          </div>
+
+        </div>
+      `).join("");
+  }
+
+  function renderPlayer() {
+    const album = albums[currentAlbum];
+
+    const coverLarge = document.getElementById("coverLarge");
+
+    if (album.cover) {
+      coverLarge.src = album.cover;
+      coverLarge.style.display = "block";
+    } else {
+      coverLarge.removeAttribute("src");
+      coverLarge.style.display = "none";
+    }
+
+    document.getElementById("nowTitle").innerText = album.title;
+
+    document.getElementById("nowAlbum").innerText = album.year;
+
+    document.getElementById("albumNotes").innerHTML = album.notes;
+
+    document.getElementById("trackList").innerHTML =
+      album.tracks.map((track, index) => `
+        <div class="dw-track">
+
+          <div class="dw-track-number">${index + 1}</div>
+
+          <div class="dw-track-title">${track.title}</div>
+
+          <div class="dw-track-duration">
+            ${track.duration || ""}
+          </div>
+
+          ${
+            track.audio
+              ? `<audio controls preload="none" src="${track.audio}"></audio>`
+              : `<div class="dw-no-audio">audio coming soon</div>`
+          }
+
+        </div>
+      `).join("");
+  }
+
+  function selectAlbum(index) {
+    currentAlbum = index;
+
+    renderAlbums();
+    renderPlayer();
+  }
+
+  renderAlbums();
+  renderPlayer();
 </script>
 
 </body>
