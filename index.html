@@ -35,11 +35,6 @@
       margin-bottom: 6px;
       color: #000000;
       letter-spacing: 0.02em;
-
-      position: sticky;
-      top: 0;
-      z-index: 9999;
-      background: #ffffff;
     }
 
     .dw-subtitle {
@@ -258,27 +253,6 @@
       margin-bottom: 4px;
     }
 
-    .dw-lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.88);
-      z-index: 99999;
-      align-items: center;
-      justify-content: center;
-      padding: 32px;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-    }
-
-    .dw-lightbox img {
-      max-width: 94vw;
-      max-height: 94vh;
-      border-radius: 16px;
-      box-shadow: 0 20px 80px rgba(0,0,0,.45);
-      cursor: zoom-out;
-    }
-
     .dw-mobile-player {
       display: none;
     }
@@ -290,6 +264,7 @@
     }
 
     @media (max-width: 850px) {
+
       #dw-app {
         padding: 16px;
       }
@@ -304,22 +279,12 @@
 
       .dw-mobile-player {
         display: block;
-        margin: 12px 0 18px 0;
+        margin-top: 12px;
+        margin-bottom: 18px;
         padding: 18px;
         background: #fafafa;
         border: 1px solid #e4e4e4;
         border-radius: 18px;
-      }
-
-      .dw-player-top,
-      .dw-player-top.has-cover {
-        grid-template-columns: 1fr;
-      }
-
-      .dw-cover-large {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1 / 1;
       }
 
       .dw-track {
@@ -338,108 +303,64 @@
 
 <div id="dw-app"></div>
 
-<div id="lightbox" class="dw-lightbox" onclick="closeLightbox()">
-  <img id="lightboxImage" onclick="event.stopPropagation()">
-</div>
-
 <script>
-  const albums = [
-    // paste your existing albums array here unchanged
-  ];
 
-  let currentAlbum = 0;
+const albums = [
+  // KEEP YOUR EXISTING ALBUMS ARRAY EXACTLY AS IT IS
+];
 
-  const app = document.getElementById("dw-app");
+let currentAlbum = 0;
 
-  app.innerHTML = `
-    <div class="dw-title">drew waters music</div>
-    <div class="dw-subtitle"></div>
+const app = document.getElementById("dw-app");
 
-    <div class="dw-layout">
-      <div class="dw-album-list" id="albumList"></div>
+app.innerHTML = `
+  <div class="dw-title">drew waters music</div>
+  <div class="dw-subtitle"></div>
 
-      <div class="dw-player">
-        <div class="dw-player-top" id="playerTop">
-          <img
-            class="dw-cover-large"
-            id="coverLarge"
-            onclick="openLightbox()"
-          >
+  <div class="dw-layout">
+    <div class="dw-album-list" id="albumList"></div>
 
-          <div>
-            <div class="dw-now-title" id="nowTitle"></div>
-            <div class="dw-now-album" id="nowAlbum"></div>
-            <div class="dw-album-notes" id="albumNotes"></div>
-          </div>
+    <div class="dw-player">
+      <div class="dw-player-top" id="playerTop">
+        <img
+          class="dw-cover-large"
+          id="coverLarge"
+        >
+
+        <div>
+          <div class="dw-now-title" id="nowTitle"></div>
+          <div class="dw-now-album" id="nowAlbum"></div>
+          <div class="dw-album-notes" id="albumNotes"></div>
         </div>
-
-        <div class="dw-tracks" id="trackList"></div>
-        <div class="dw-credits" id="albumCredits"></div>
       </div>
+
+      <div class="dw-tracks" id="trackList"></div>
+      <div class="dw-credits" id="albumCredits"></div>
     </div>
-  `;
+  </div>
+`;
 
-  function pauseOtherAudio(currentAudio) {
-    document.querySelectorAll("audio").forEach(audio => {
-      if (audio !== currentAudio) {
-        audio.pause();
-        audio.currentTime = 0;
-      }
-    });
-  }
+function pauseOtherAudio(currentAudio) {
+  document.querySelectorAll("audio").forEach(audio => {
+    if (audio !== currentAudio) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  });
+}
 
-  function renderMobilePlayer(album) {
-    return `
-      <div class="dw-mobile-player">
-        ${
-          album.cover
-            ? `<img
-                 class="dw-mobile-cover"
-                 src="${album.cover}"
-                 alt="${album.title} cover"
-               >`
-            : ``
-        }
+function renderAlbums() {
 
-        <div class="dw-now-title">${album.title}</div>
-        <div class="dw-now-album">${album.year}</div>
-        <div class="dw-album-notes">${album.notes}</div>
+  document.getElementById("albumList").innerHTML =
+    albums.map((album, index) => `
 
-        <div class="dw-tracks">
-          ${album.tracks.map((track, index) => `
-            <div class="dw-track">
-              <div class="dw-track-number">${index + 1}</div>
-              <div class="dw-track-title">${track.title}</div>
+      <div>
 
-              ${
-                track.audio
-                  ? `<audio
-                       controls
-                       controlsList="nodownload noplaybackrate"
-                       preload="metadata"
-                       onplay="pauseOtherAudio(this)"
-                       src="${track.audio}">
-                     </audio>`
-                  : `<div class="dw-no-audio">audio coming soon</div>`
-              }
-            </div>
-          `).join("")}
-        </div>
-
-        <div class="dw-credits">
-          ${album.credits || ""}
-        </div>
-      </div>
-    `;
-  }
-
-  function renderAlbums() {
-    document.getElementById("albumList").innerHTML =
-      albums.map((album, index) => `
         <div
           class="dw-album-card ${index === currentAlbum ? "active" : ""}"
           onclick="selectAlbum(${index})"
         >
+
           ${
             album.cover
               ? `<img src="${album.cover}" alt="${album.title} cover">`
@@ -450,88 +371,162 @@
             <div class="dw-album-title">${album.title}</div>
             <div class="dw-album-meta">${album.year}</div>
           </div>
+
         </div>
 
-        ${index === currentAlbum ? renderMobilePlayer(album) : ""}
-      `).join("");
+        ${
+          index === currentAlbum
+            ? `
+              <div class="dw-mobile-player">
+
+                ${
+                  album.cover
+                    ? `
+                      <img
+                        class="dw-mobile-cover"
+                        src="${album.cover}"
+                        alt="${album.title} cover"
+                      >
+                    `
+                    : ``
+                }
+
+                <div class="dw-now-title">${album.title}</div>
+
+                <div class="dw-now-album">
+                  ${album.year}
+                </div>
+
+                <div class="dw-album-notes">
+                  ${album.notes}
+                </div>
+
+                <div class="dw-tracks">
+
+                  ${album.tracks.map((track, trackIndex) => `
+
+                    <div class="dw-track">
+
+                      <div class="dw-track-number">
+                        ${trackIndex + 1}
+                      </div>
+
+                      <div class="dw-track-title">
+                        ${track.title}
+                      </div>
+
+                      ${
+                        track.audio
+                          ? `
+                            <audio
+                              controls
+                              controlsList="nodownload noplaybackrate"
+                              preload="metadata"
+                              onplay="pauseOtherAudio(this)"
+                              src="${track.audio}">
+                            </audio>
+                          `
+                          : `
+                            <div class="dw-no-audio">
+                              audio coming soon
+                            </div>
+                          `
+                      }
+
+                    </div>
+
+                  `).join("")}
+
+                </div>
+
+                <div class="dw-credits">
+                  ${album.credits || ""}
+                </div>
+
+              </div>
+            `
+            : ""
+        }
+
+      </div>
+
+    `).join("");
+}
+
+function renderPlayer() {
+
+  const album = albums[currentAlbum];
+
+  const playerTop = document.getElementById("playerTop");
+  const coverLarge = document.getElementById("coverLarge");
+
+  if (album.cover) {
+    playerTop.classList.add("has-cover");
+    coverLarge.src = album.cover;
+    coverLarge.style.display = "block";
+  } else {
+    playerTop.classList.remove("has-cover");
+    coverLarge.removeAttribute("src");
+    coverLarge.style.display = "none";
   }
 
-  function renderPlayer() {
-    const album = albums[currentAlbum];
+  document.getElementById("nowTitle").innerText = album.title;
+  document.getElementById("nowAlbum").innerText = album.year;
+  document.getElementById("albumNotes").innerHTML = album.notes;
 
-    const playerTop = document.getElementById("playerTop");
-    const coverLarge = document.getElementById("coverLarge");
+  document.getElementById("trackList").innerHTML =
+    album.tracks.map((track, index) => `
+      <div class="dw-track">
 
-    if (album.cover) {
-      playerTop.classList.add("has-cover");
-      coverLarge.src = album.cover;
-      coverLarge.style.display = "block";
-    } else {
-      playerTop.classList.remove("has-cover");
-      coverLarge.removeAttribute("src");
-      coverLarge.style.display = "none";
-    }
-
-    document.getElementById("nowTitle").innerText = album.title;
-    document.getElementById("nowAlbum").innerText = album.year;
-    document.getElementById("albumNotes").innerHTML = album.notes;
-
-    document.getElementById("trackList").innerHTML =
-      album.tracks.map((track, index) => `
-        <div class="dw-track">
-          <div class="dw-track-number">${index + 1}</div>
-          <div class="dw-track-title">${track.title}</div>
-
-          ${
-            track.audio
-              ? `<audio
-                   controls
-                   controlsList="nodownload noplaybackrate"
-                   preload="metadata"
-                   onplay="pauseOtherAudio(this)"
-                   src="${track.audio}">
-                 </audio>`
-              : `<div class="dw-no-audio">audio coming soon</div>`
-          }
+        <div class="dw-track-number">
+          ${index + 1}
         </div>
-      `).join("");
 
-    document.getElementById("albumCredits").innerHTML =
-      album.credits || "";
-  }
+        <div class="dw-track-title">
+          ${track.title}
+        </div>
 
-  function selectAlbum(index) {
-    document.querySelectorAll("audio").forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
+        ${
+          track.audio
+            ? `
+              <audio
+                controls
+                controlsList="nodownload noplaybackrate"
+                preload="metadata"
+                onplay="pauseOtherAudio(this)"
+                src="${track.audio}">
+              </audio>
+            `
+            : `
+              <div class="dw-no-audio">
+                audio coming soon
+              </div>
+            `
+        }
 
-    currentAlbum = index;
-    renderAlbums();
-    renderPlayer();
-  }
+      </div>
+    `).join("");
 
-  function openLightbox() {
-    const album = albums[currentAlbum];
+  document.getElementById("albumCredits").innerHTML =
+    album.credits || "";
+}
 
-    if (!album.cover) return;
+function selectAlbum(index) {
 
-    document.getElementById("lightboxImage").src = album.cover;
-    document.getElementById("lightbox").style.display = "flex";
-  }
-
-  function closeLightbox() {
-    document.getElementById("lightbox").style.display = "none";
-  }
-
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-      closeLightbox();
-    }
+  document.querySelectorAll("audio").forEach(audio => {
+    audio.pause();
+    audio.currentTime = 0;
   });
+
+  currentAlbum = index;
 
   renderAlbums();
   renderPlayer();
+}
+
+renderAlbums();
+renderPlayer();
+
 </script>
 
 </body>
