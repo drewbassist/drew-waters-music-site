@@ -208,5 +208,35 @@
         "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/ny_la+for+bass+and+drums+volume+2/joe_drew_1_25_25_v2.wav"
       }
     ]
-  }
+  },
+  {
+  "id": "lofi_monologues_volume_2",
+  "title": "lofi monologues volume 2",
+  "year": "2026",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/lofi_monologues.png",
+  "notes": "hardware-based minimal compositions built from repetition, saturation, reduction, and unstable timing relationships.",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · recording, production, synths, drum machines</div>\n        <div class=\"dw-credit-line\">recorded in los angeles, 2026</div>\n      ",
+  "tracks": [
+    {
+      "title": "chat, 217_03",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi_monologues/chat_217_03.wav"
+    },
+    {
+      "title": "ditto",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi_monologues/ditto.wav"
+    },
+    {
+      "title": "i'm here",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi_monologues/i'm%20here.wav"
+    },
+    {
+      "title": "mint, saving life",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi_monologues/mint_saving_life.wav"
+    },
+    {
+      "title": "outside your door",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi_monologues/outside%20your%20door.wav"
+    }
+  ]
+}
 ]
