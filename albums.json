@@ -238,5 +238,34 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi_monologues/outside%20your%20door.wav"
     }
   ]
+},
+  {
+  "id": "discussions_for_bass_and_drums_volume_4",
+  "title": "discussions for bass and drums volume 4",
+  "artist": "matt aiken and drew waters",
+  "year": "2025",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/discussions%20for%20bass%20and%20drums%20volume%204.png",
+  "tracks": [
+    {
+      "title": "the slope of the heavy woods",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%20volume%204/aiken_waters_jan_20_2025_v3.wav"
+    },
+    {
+      "title": "pales and disappears",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%20volume%204/aiken_waters_feb_12_2025_v1.wav"
+    },
+    {
+      "title": "in the wall of the mist that hides",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%20volume%204/aiken_waters_apr122025_v2.wav"
+    },
+    {
+      "title": "the edge above whose peak",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%20volume%204/aiken_waters_4_19_2025.wav"
+    },
+    {
+      "title": "last night the moon ---",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%20volume%204/aiken_waters_4_19_2025_song2_v3.wav"
+    }
+  ]
 }
 ]
