@@ -1,5 +1,6 @@
 [
   {
+    "id": "discussions_for_bass_and_drums_volume_5",
     "title": "discussions for bass and drums volume 5",
     "year": "2026",
     "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/discussions_for_bass_and_drums_volume_5.png",
@@ -29,6 +30,7 @@
     ]
   },
   {
+    "id": "the_lost_tapes",
     "title": "the lost tapes",
     "year": "2008",
     "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/shotwell_waters.png",
@@ -70,6 +72,7 @@
     ]
   },
   {
+    "id": "humboldt_and_detroit",
     "title": "humboldt and detroit",
     "year": "2026",
     "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/humbolt_detroit_vol_01.png",
@@ -95,6 +98,7 @@
     ]
   },
   {
+    "id": "the_sample_sessions_volume_2",
     "title": "the sample sessions volume 2",
     "year": "2026",
     "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/sample+sessions+volume+2.png",
@@ -124,6 +128,7 @@
     ]
   },
   {
+    "id": "the_sample_sessions_volume_1",
     "title": "the sample sessions volume 1",
     "year": "2025",
     "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/chair_cover_sample+session.png",
@@ -153,6 +158,7 @@
     ]
   },
   {
+    "id": "lofi_acid_monologues_303_606_101_volume_1",
     "title": "lofi acid monologues: 303+606+101 volume 1",
     "year": "2025",
     "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/lofi_acid%3A+303%2B606%2B101.png",
@@ -182,6 +188,7 @@
     ]
   },
   {
+    "id": "ny_la_for_bass_and_drums_volume_2",
     "title": "ny_la for bass and drums volume 2",
     "year": "2025",
     "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/joe_abba_drew_waters_volume2.png",
