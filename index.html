@@ -23,34 +23,36 @@
     }
 
     #dw-app {
-      min-height: 100vh;
-      width: 100vw;
-      padding-left: 22px;
-      padding-right: 22px;
-      padding-bottom: 22px;
-      box-sizing: border-box;
-    }
+  min-height: 100vh;
+  width: 100vw;
+  padding-left: 22px;
+  padding-right: 22px;
+  padding-bottom: 22px;
+  box-sizing: border-box;
+}
 
-    .dw-title {
-      font-size: 24px;
-      font-weight: 400;
-      color: #000000;
-      letter-spacing: 0.02em;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 9999;
-      background: #ffffff;
-      padding: 22px 22px 12px 22px;
-      box-sizing: border-box;
-    }
+   .dw-title {
+  font-size: 24px;
+  font-weight: 400;
+  color: #000000;
+  letter-spacing: 0.02em;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+  background: #ffffff;
+  padding: 22px 22px 12px 22px;
+  box-sizing: border-box;
+}
 
     .dw-subtitle {
-      color: #666666;
-      font-size: 12px;
-      margin-bottom: 72px;
-    }
+  color: #666666;
+  font-size: 12px;
+  margin-bottom: 72px;
+}
 
     .dw-layout {
       display: grid;
@@ -349,225 +351,7 @@
 </div>
 
 <script>
-  const albums = [
-    {
-      title: "discussions for bass and drums volume 5",
-      year: "2026",
-      cover: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/discussions_for_bass_and_drums_volume_5.png",
-      notes:
-        "a variation on the discussions series, this one took a while, maybe 5-6 months?<br>glockenspeil as it is the most metal of instruments, and it brings the icelandic vibes as well.",
-      credits: `
-        <div class="dw-credits-title">credits</div>
-        <div class="dw-credit-line">drew waters · guitar, glockenspeil, recording, production</div>
-        <div class="dw-credit-line">matt aiken · drums, recording</div>
-        <div class="dw-credit-line">recorded in california and new york, 10 april 2026</div>
-      `,
-      tracks: [
-        {
-          title: "they call me and i go",
-          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions+for+bass+and+drums+volume+5/aiken_Waters_redo_01_v2.wav"
-        },
-        {
-          title: "it is a frozen road",
-          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions+for+bass+and+drums+volume+5/aiken_waters_redo_002_v4.wav"
-        },
-        {
-          title: "past midnight, a dust",
-          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions+for+bass+and+drums+volume+5/aiken_waters_redo_003_v2.wav"
-        },
-        {
-          title: "of snow caught",
-          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions+for+bass+and+drums+volume+5/aiken_waters_redo_004_v2.wav"
-        },
-        {
-          title: "in the rigid wheeltracks",
-          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions+for+bass+and+drums+volume+5/aiken_waters_redo_005_v3.wav"
-        }
-      ]
-    },
-    {
-      title: "the lost tapes",
-      year: "2008",
-      cover: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/shotwell_waters.png",
-      notes: `
-found this a couple of days ago going through my gear space. i'm not sure why i didn't publish this. at the time, 18 years ago now, the only format was cd, possibly a dedicated website, maybe that's why? these tracks were contained on an old alesis masterlink, like the only cool piece of gear they ever made.
-<br>
-blew my mind in a couple of ways in that i continue to do bass/drum duets and this was the first.
-<br>
-the arrangements are bolder than i expected. the composed sections, soloing, transcribing the solo then composing a harmonization, were a little startling. it really inspires me to do more of this.
-<br>
-i was mixing out of the box for the first time, had no clue what i was doing really. just a digi003 through a folcrom passive mixer, printing to the masterlink, in a space in san leandro.
-<br>
-some originals and favorite standards. especially beatrice. that piece is all magic.
-`,
-      credits: `
-        <div class="dw-credits-title">credits</div>
-        <div class="dw-credit-line">drew waters · guitar, recording, production</div>
-        <div class="dw-credit-line">joe shotwell · drums</div>
-        <div class="dw-credit-line">recorded at sharkbite studios, oakland, 2008</div>
-      `,
-      tracks: [
-        { title: "aliceish", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+lost+tapes+2008/aliceish.wav" },
-        { title: "stickman's sun", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+lost+tapes+2008/stickman_s+sun.wav" },
-        { title: "beatrice", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+lost+tapes+2008/beatrice.wav" },
-        { title: "bluesette", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+lost+tapes+2008/bluesette.wav" },
-        { title: "all the things you are", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+lost+tapes+2008/all+the+things.wav" },
-        { title: "stella by starlight", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+lost+tapes+2008/stella.wav" },
-        { title: "blues for mitch", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+lost+tapes+2008/blues+for+mitch.wav" },
-        { title: "rhythms, changes", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+lost+tapes+2008/rhythms+changes.wav" }
-      ]
-    },
-    {
-      title: "humboldt and detroit",
-      year: "2026",
-      cover: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/humbolt_detroit_vol_01.png",
-      notes:
-        "recording close to the intersection of humboldt and detroit streets, this collection represents a conversation that begins but never quite concludes-  short gestures offered, responses, shaped by some assumptions. this release is the first in an ongoing series of experiments, exploring a prompt, some space, and a quick decision —what can happen when one listens and carefully responds..",
-      credits: `
-        <div class="dw-credits-title">credits</div>
-        <div class="dw-credit-line">drew waters · guitar, recording, production</div>
-        <div class="dw-credit-line">caitlin moss · drums, recording</div>
-        <div class="dw-credit-line">recorded in los angeles 1 jan 2026</div>
-      `,
-      tracks: [
-        { title: "since feeling is first", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/humbolt+and+detroit/moss_waters_88_bpm_jan_2026.wav" },
-        { title: "who pays any attention", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/humbolt+and+detroit/moss_waters_95_bpm_jan_2026_v4.wav" },
-        { title: "to the syntax", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/humbolt+and+detroit/moss_waters_97bpm_jan_2026_v3.wav" },
-        { title: "of things", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/humbolt+and+detroit/moss_waters_jan_16_2026_song_004_v8.wav" }
-      ]
-    },
-    {
-      title: "the sample sessions volume 2",
-      year: "2026",
-      cover: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/sample+sessions+volume+2.png",
-      notes:
-        "merging acoustic drum sounds with the tr 909, looping, layering, jumping between workstations: logic, the OP1 Field, pro tools, tape, and all back again. cymbal and mic changes, off-axis mic experiments, slightly more industrial..",
-      credits: `
-        <div class="dw-credits-title">credits</div>
-        <div class="dw-credit-line">drew waters · guitar, drum machine, synths</div>
-        <div class="dw-credit-line">matt aiken · drums</div>
-        <div class="dw-credit-line">recorded in ny and california 2 jan 2026</div>
-      `,
-      tracks: [
-        { title: "it's a strange courage", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+sample+sessions+volume+2/aiken_waters_2_28_25.wav" },
-        { title: "you give me ancient star:", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+sample+sessions+volume+2/aiken_waters_12_29_2025.wav" },
-        { title: "shine alone in the sunrise", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+sample+sessions+volume+2/aiken_waters_12_31_2026.wav" },
-        { title: "toward which", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+sample+sessions+volume+2/aiken_waters_12_31_song_2_that_day.wav" },
-        { title: "you lend no part!", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+sample+sessions+volume+2/aiken_waters_1_4_2026_v3.wav" }
-      ]
-    },
-    {
-      title: "the sample sessions volume 1",
-      year: "2025",
-      cover: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/chair_cover_sample+session.png",
-      notes: `
-this is going to be a 5 song ep with some delimitations/confines. taking only four 1-6 second loops, sort of randomly selected and extracted from past songs posted here below.
-
-<br>
-
-1. a bass drum sound from aiken<br>
-2. a snare-ish type sound<br>
-3. a hihat-kinda sound<br>
-4. a guitar or saxophone from belzer
-
-<br>
-
-i load them into the zoia pedal via micro sd card.
-
-<br>
-
-within the zoia, i create a 16 step sequencer, triggering a bass, snare and hihat sound for the first three voices. the last voice is a guitar or saxophone sample that i pitch shift, run through the zoia delay, reverb, reverse and other on-board mangling. this one is not sequenced. i "play" it live from the zoia box into pro tools.
-`,
-      credits: `
-        <div class="dw-credits-title">credits</div>
-        <div class="dw-credit-line">drew waters · zoia, guitar, recording</div>
-        <div class="dw-credit-line">matt aiken · drums and percussion</div>
-        <div class="dw-credit-line">recorded in los angeles and nyc, 4 november 2025</div>
-      `,
-      tracks: [
-        { title: "bank 47", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+sample+sessions+volume+1/bank_47_master.wav" },
-        { title: "bank 48", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+sample+sessions+volume+1/bank_48_master.wav" },
-        { title: "bank 49", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+sample+sessions+volume+1/bank_49_master.wav" },
-        { title: "bank 50", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+sample+sessions+volume+1/bank_50_master.wav" },
-        { title: "bank 51", audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the+sample+sessions+volume+1/bank_51_master.wav" }
-      ]
-    },
-    {
-      title: "lofi acid monologues: 303+606+101 volume 1",
-      year: "2025",
-      cover: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/lofi_acid%3A+303%2B606%2B101.png",
-      notes: `
-built almost entirely from hardware limitations and repetition.
-
-<br>
-
-the tr606 handles rhythm duties while the tb303 and sh101 generate most harmonic and melodic material. some OP1 textures and resampling pushed things into a more unstable direction.
-
-<br>
-
-a lot of these tracks began as long-form jams recorded directly into pro tools, then reduced into shorter structures later. minimal editing, minimal correction, mostly live manipulation.
-
-<br>
-
-recorded in los angeles, june 2025.
-`,
-      credits: `
-        <div class="dw-credits-title">credits</div>
-        <div class="dw-credit-line">drew waters · tr606, tb303, sh101, OP1</div>
-        <div class="dw-credit-line">recorded in los angeles, june 2025</div>
-      `,
-      tracks: [
-        {
-          title: "1+6+3",
-          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi+acid%3A+303%2B606%2B101/2025_synth_02.wav"
-        },
-        {
-          title: "6+3+1",
-          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi+acid%3A+303%2B606%2B101/jam_03_real_v2.wav"
-        },
-        {
-          title: "3+6+1",
-          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi+acid%3A+303%2B606%2B101/2025_jam_1_real_v2.wav"
-        },
-        {
-          title: "1+3+6",
-          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi+acid%3A+303%2B606%2B101/2025_synth_jam_04_real.wav"
-        },
-        {
-          title: "6+1+3",
-          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi+acid%3A+303%2B606%2B101/2025_jam_5_real.wav"
-        }
-      ]
-    },
-    {
-      title: "ny_la for bass and drums volume 2",
-      year: "2025",
-      cover: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/joe_abba_drew_waters_volume2.png",
-      notes:
-        "bass and drums duo recordings by joe abba and drew waters.",
-      credits: `
-        <div class="dw-credits-title">credits</div>
-        <div class="dw-credit-line">drew waters · guitar</div>
-        <div class="dw-credit-line">joe abba · drums</div>
-        <div class="dw-credit-line">recorded in los angeles and nyc, 19 february 2025</div>
-      `,
-      tracks: [
-        {
-          title: "diving",
-          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/ny_la+for+bass+and+drums+volume+2/joe_drew_7_2018_44_01.wav"
-        },
-        {
-          title: "through bedrooms",
-          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/ny_la+for+bass+and+drums+volume+2/joe_drew_07_2018.wav"
-        },
-        {
-          title: "makes the car",
-          audio: "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/ny_la+for+bass+and+drums+volume+2/joe_drew_1_25_25_v2.wav"
-        }
-      ]
-    }
-  ];
-
+  let albums = [];
   let currentAlbum = 0;
   let mobileOpenAlbum = -1;
 
@@ -639,12 +423,15 @@ recorded in los angeles, june 2025.
   }
 
   function renderAlbums() {
+    const albumList = document.getElementById("albumList");
+    if (!albumList || !Array.isArray(albums)) return;
+
     const activeAlbumIndex =
       window.innerWidth <= 850
         ? mobileOpenAlbum
         : currentAlbum;
 
-    document.getElementById("albumList").innerHTML =
+    albumList.innerHTML =
       albums.map((album, index) => `
         <div class="dw-album-wrap">
           <div
@@ -676,10 +463,10 @@ recorded in los angeles, june 2025.
 
                   <div class="dw-now-title">${album.title}</div>
                   <div class="dw-now-album">${album.year}</div>
-                  <div class="dw-album-notes">${album.notes}</div>
+                  <div class="dw-album-notes">${album.notes || ""}</div>
 
                   <div class="dw-tracks">
-                    ${album.tracks.map((track, trackIndex) => `
+                    ${(album.tracks || []).map((track, trackIndex) => `
                       <div class="dw-track">
                         <div class="dw-track-number">${trackIndex + 1}</div>
                         <div class="dw-track-title">${track.title}</div>
@@ -731,7 +518,7 @@ recorded in los angeles, june 2025.
 
     document.getElementById("nowTitle").innerText = album.title;
     document.getElementById("nowAlbum").innerText = album.year;
-    document.getElementById("albumNotes").innerHTML = album.notes;
+    document.getElementById("albumNotes").innerHTML = album.notes || "";
 
     if (window.innerWidth <= 850) {
       document.getElementById("trackList").innerHTML = "";
@@ -740,7 +527,7 @@ recorded in los angeles, june 2025.
     }
 
     document.getElementById("trackList").innerHTML =
-      album.tracks.map((track, index) => `
+      (album.tracks || []).map((track, index) => `
         <div class="dw-track">
           <div class="dw-track-number">${index + 1}</div>
           <div class="dw-track-title">${track.title}</div>
@@ -815,6 +602,42 @@ recorded in los angeles, june 2025.
     document.getElementById("lightbox").style.display = "none";
   }
 
+  async function initAlbums() {
+    try {
+      const response = await fetch("./albums.json", { cache: "no-store" });
+
+      if (!response.ok) {
+        throw new Error(`could not load albums.json: ${response.status}`);
+      }
+
+      albums = await response.json();
+
+      if (!Array.isArray(albums) || albums.length === 0) {
+        throw new Error("albums.json is empty or not formatted as an array");
+      }
+
+      currentAlbum = 0;
+      mobileOpenAlbum = -1;
+
+      renderAlbums();
+
+      if (window.innerWidth > 850) {
+        renderPlayer();
+      }
+    } catch (error) {
+      console.error(error);
+
+      document.getElementById("dw-app").innerHTML = `
+        <div class="dw-title">drew waters music</div>
+        <div class="dw-subtitle"></div>
+        <div class="dw-player">
+          <div class="dw-now-title">albums could not load</div>
+          <div class="dw-album-notes">check that albums.json is in the same folder as index.html, then test with python3 -m http.server 8000 instead of double-clicking the file.</div>
+        </div>
+      `;
+    }
+  }
+
   document.addEventListener("keydown", event => {
     if (event.key === "Escape") {
       closeLightbox();
@@ -829,11 +652,7 @@ recorded in los angeles, june 2025.
     }
   });
 
-  renderAlbums();
-
-  if (window.innerWidth > 850) {
-    renderPlayer();
-  }
+  initAlbums();
 </script>
 
 </body>
