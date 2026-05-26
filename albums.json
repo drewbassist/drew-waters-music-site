@@ -219,23 +219,23 @@
   "tracks": [
     {
       "title": "chat, 217_03",
-      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi_monologues/chat_217_03.wav"
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi%20monologues/chat_217_03.wav"
     },
     {
       "title": "ditto",
-      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi_monologues/ditto.wav"
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi%20monologues/ditto.wav"
     },
     {
-      "title": "i'm here",
-      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi_monologues/i'm%20here.wav"
+      "title": "im here",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi%20monologues/im%20here.wav"
     },
     {
       "title": "mint, saving life",
-      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi_monologues/mint_saving_life.wav"
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi%20monologues/mint_saving_life.wav"
     },
     {
       "title": "outside your door",
-      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi_monologues/outside%20your%20door.wav"
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/lofi%20monologues/outside%20your%20door.wav"
     }
   ]
 },
