@@ -267,5 +267,35 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%20volume%204/aiken_waters_4_19_2025_song2_v3.wav"
     }
   ]
+},
+  {
+  "id": "monologues_for_bass_and_drums",
+  "title": "monologues for bass and drums",
+  "year": "2024",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/monologues%20for%20bass%20and%20drums.png",
+  "notes": "bass and drums sketches built around repetition, timing, texture, and reduced forms.",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · recording, production, bass, drums</div>\n        <div class=\"dw-credit-line\">recorded in los angeles, 2024</div>\n      ",
+  "tracks": [
+    {
+      "title": "standing but still talking",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/monologues%20for%20bass%20and%20drums/standing_but_still_talking.wav"
+    },
+    {
+      "title": "in a drawer, in a jar, in a box",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/monologues%20for%20bass%20and%20drums/folk_rock_mt_08.wav"
+    },
+    {
+      "title": "tied twice tied",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/monologues%20for%20bass%20and%20drums/Audio%202_01.wav"
+    },
+    {
+      "title": "one door closes, another closes",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/monologues%20for%20bass%20and%20drums/mt_06_v4-01.wav"
+    },
+    {
+      "title": "shifting",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/monologues%20for%20bass%20and%20drums/MT_07.wav"
+    }
+  ]
 }
 ]
