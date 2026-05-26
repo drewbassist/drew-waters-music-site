@@ -12,7 +12,8 @@
       margin: 0;
       padding: 0;
       background: #ffffff;
-      overflow-x: hidden;
+      overflow: hidden;
+      height: 100%;
     }
 
     body {
@@ -23,42 +24,45 @@
     }
 
     #dw-app {
-  min-height: 100vh;
-  width: 100vw;
-  padding-left: 22px;
-  padding-right: 22px;
-  padding-bottom: 22px;
-  box-sizing: border-box;
-}
+      height: 100vh;
+      width: 100vw;
+      padding-left: 22px;
+      padding-right: 22px;
+      padding-bottom: 22px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
 
-   .dw-title {
-  font-size: 24px;
-  font-weight: 400;
-  color: #000000;
-  letter-spacing: 0.02em;
+    .dw-title {
+      font-size: 24px;
+      font-weight: 400;
+      color: #000000;
+      letter-spacing: 0.02em;
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
 
-  background: #ffffff;
-  padding: 22px 22px 12px 22px;
-  box-sizing: border-box;
-}
+      background: #ffffff;
+      padding: 22px 22px 12px 22px;
+      box-sizing: border-box;
+    }
 
     .dw-subtitle {
-  color: #666666;
-  font-size: 12px;
-  margin-bottom: 72px;
-}
+      color: #666666;
+      font-size: 12px;
+      margin-bottom: 72px;
+    }
 
     .dw-layout {
       display: grid;
       grid-template-columns: 260px minmax(0, 1fr);
       gap: 24px;
       width: 100%;
+      height: calc(100vh - 90px);
+      overflow: hidden;
     }
 
     .dw-album-list {
@@ -66,6 +70,26 @@
       flex-direction: column;
       gap: 12px;
       min-width: 0;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      padding-right: 4px;
+      box-sizing: border-box;
+    }
+
+    .dw-player {
+      background: #fafafa;
+      border: 1px solid #e4e4e4;
+      border-radius: 18px;
+      padding: 22px;
+      min-width: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      box-sizing: border-box;
     }
 
     .dw-album-card {
@@ -79,7 +103,7 @@
       border: 1px solid #e5e5e5;
       cursor: pointer;
       transition: background .18s ease, transform .18s ease, border-color .18s ease;
-      scroll-margin-top: 90px;
+      scroll-margin-top: 12px;
     }
 
     .dw-album-card:hover {
@@ -121,16 +145,6 @@
       color: #777777;
       margin-top: 4px;
       font-weight: 400;
-    }
-
-    .dw-player {
-      background: #fafafa;
-      border: 1px solid #e4e4e4;
-      border-radius: 18px;
-      padding: 22px;
-      min-width: 0;
-      width: 100%;
-      box-sizing: border-box;
     }
 
     .dw-player-top {
@@ -298,12 +312,28 @@
     }
 
     @media (max-width: 850px) {
+      html, body {
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: auto;
+      }
+
       #dw-app {
+        height: auto;
+        min-height: 100vh;
         padding: 16px;
+        overflow: visible;
       }
 
       .dw-layout {
         grid-template-columns: 1fr;
+        height: auto;
+        overflow: visible;
+      }
+
+      .dw-album-list {
+        height: auto;
+        overflow: visible;
       }
 
       .dw-player {
