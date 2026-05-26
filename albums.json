@@ -387,5 +387,27 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass,%20saxophone%20and%20drums,%20volume%201/matt_matt_drew_4_16_24_post_belzer_6_25_24.wav"
     }
   ]
+},
+  {
+  "id": "duets_for_distant_drums_and_bass",
+  "title": "duets for distant drums and bass",
+  "year": "2024",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/duets%20for%20distant%20drums%20and%20bass.png",
+  "notes": "Improvisations for bass and drums recorded remotely between California and New York. Conversations in rhythm, texture, space, and response.",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · bass</div>\n        <div class=\"dw-credit-line\">dave o'neill · drums</div>\n        <div class=\"dw-credit-line\">recorded remotely, 2024</div>\n      ",
+  "tracks": [
+    {
+      "title": "sol: improvisations for bass and drums",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/duets%20for%20distant%20drums%20and%20bass/dave_drew_song_001_03262024.wav"
+    },
+    {
+      "title": "terra",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/duets%20for%20distant%20drums%20and%20bass/dave_drew_song_002_04222024_v2_02.wav"
+    },
+    {
+      "title": "the stardust you spoke of",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/duets%20for%20distant%20drums%20and%20bass/dave_drew_song_3.wav"
+    }
+  ]
 }
 ]
