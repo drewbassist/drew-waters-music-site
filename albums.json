@@ -331,5 +331,35 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/ny_la%20for%20bass%20and%20drums%20volume%201/joe_drew_10_16_24_v3.wav"
     }
   ]
+},
+  {
+  "id": "discussions_for_bass_and_drums_volume_3",
+  "title": "discussions for bass and drums volume 3",
+  "year": "2024",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/discussions%20for%20bass%20and%20drums%20volume%203.png",
+  "notes": "the third volume in the ongoing discussions series. improvised conversations for bass and drums recorded between california and new york.",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · bass, recording, production</div>\n        <div class=\"dw-credit-line\">matt aiken · drums</div>\n        <div class=\"dw-credit-line\">recorded in california and new york, 2024</div>\n      ",
+  "tracks": [
+    {
+      "title": "up into his mind",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%20volume%203/aiken_waters_7_15_24_v2_01.wav"
+    },
+    {
+      "title": "there's only room for one",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%20volume%203/aiken_waters_7_21_24_v4_02.wav"
+    },
+    {
+      "title": "space face close",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%20volume%203/matt_drew_6_27_24_done_6_30.wav"
+    },
+    {
+      "title": "pick him up on channel two",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%20volume%203/matt_drew_june_8_v3_june19.wav"
+    },
+    {
+      "title": "i heard telephones",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%20volume%203/Matt_Matt_Drew_05_01_24_v2_rough_pre_belzer.wav"
+    }
+  ]
 }
 ]
