@@ -491,5 +491,35 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/maybe%20this%20will%20help/Master_wichita_03.wav"
     }
   ]
+},
+  {
+  "id": "standards_two",
+  "title": "standards two",
+  "year": "2023",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/standards_two.png",
+  "notes": "A collection of improvisations and reinterpretations that move between jazz, ambient textures, and song form. Recorded as a continuation of the standards series, exploring familiar structures through spontaneous performance.",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · bass</div>\n        <div class=\"dw-credit-line\">recorded 2023</div>\n      ",
+  "tracks": [
+    {
+      "title": "conned",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/standards_two/conned_again_master.wav"
+    },
+    {
+      "title": "half way",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/standards_two/not_half_master.wav"
+    },
+    {
+      "title": "punch cab",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/standards_two/punch_cab_master.wav"
+    },
+    {
+      "title": "no hello",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/standards_two/not_hello_master.wav"
+    },
+    {
+      "title": "unconfirmed",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/standards_two/unconfirmed_master.wav"
+    }
+  ]
 }
 ]
