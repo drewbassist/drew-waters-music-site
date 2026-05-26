@@ -461,5 +461,35 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%3A%20volume%201/are_you_still_premaster_2024_v2.wav"
     }
   ]
+},
+  {
+  "id": "maybe_this_will_help",
+  "title": "maybe this will help",
+  "year": "2023",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/maybe%20this%20will%20help.png",
+  "notes": "A collection of reinterpretations and reflections on songs that have traveled across genres, generations, and personal histories. Recorded by Drew Waters and Léo Costa, these performances explore familiar melodies through a sparse and intimate lens.",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · bass</div>\n        <div class=\"dw-credit-line\">léo costa · guitar</div>\n        <div class=\"dw-credit-line\">recorded 2023</div>\n      ",
+  "tracks": [
+    {
+      "title": "don't let it bring you down",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/maybe%20this%20will%20help/master_dont_let_it_06-01.wav"
+    },
+    {
+      "title": "fake plastic trees",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/maybe%20this%20will%20help/Master_fake_plastic_02.wav"
+    },
+    {
+      "title": "how soon is now",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/maybe%20this%20will%20help/Audio%207_04.wav"
+    },
+    {
+      "title": "love will tear us apart",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/maybe%20this%20will%20help/Master_love_will_05.wav"
+    },
+    {
+      "title": "wichita lineman",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/maybe%20this%20will%20help/Master_wichita_03.wav"
+    }
+  ]
 }
 ]
