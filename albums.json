@@ -439,5 +439,27 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%3A%20volume%202/aiken_waters_dec_17_2023_v2_premaster.wav"
     }
   ]
+},
+  {
+  "id": "discussions_for_bass_and_drums_volume_1",
+  "title": "discussions for bass and drums: volume 1",
+  "year": "2023",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/discussions%20for%20bass%20and%20drums-%20volume%201.png",
+  "notes": "The first volume in the discussions for bass and drums series. Bass, drums, improvisation, composition, and response.",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · bass</div>\n        <div class=\"dw-credit-line\">matt aiken · drums</div>\n        <div class=\"dw-credit-line\">recorded 2023</div>\n      ",
+  "tracks": [
+    {
+      "title": "that time...",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%3A%20volume%201/that_time_premaster_v3_2024.wav"
+    },
+    {
+      "title": "remember when we...",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%3A%20volume%201/remember_when_we_premaster_2024_v2.wav"
+    },
+    {
+      "title": "are you still...",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%3A%20volume%201/are_you_still_premaster_2024_v2.wav"
+    }
+  ]
 }
 ]
