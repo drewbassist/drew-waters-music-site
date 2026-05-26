@@ -605,5 +605,43 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2008%20home.wav"
     }
   ]
+},
+  {
+  "id": "rock_for_bass_and_drums_volume_3",
+  "title": "rock for bass and drums: volume 3",
+  "year": "2019",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/rock%20for%20bass%20and%20drums%20cover.png",
+  "notes": "the third volume in the rock for bass and drums series. seven pieces built around groove, interaction, and the ongoing conversation between bass and drums.",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · bass, composition, production</div>\n        <div class=\"dw-credit-line\">recorded 2019</div>\n      ",
+  "tracks": [
+    {
+      "title": "big time buck white",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/rock%20for%20bass%20and%20drums%20volume%203/drew%20waters%20-%20rock%20for%20bass%20and%20drums-%20volume%203%20-%2001%20big%20time%20buck%20white.wav"
+    },
+    {
+      "title": "sara's latte",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/rock%20for%20bass%20and%20drums%20volume%203/drew%20waters%20-%20rock%20for%20bass%20and%20drums-%20volume%203%20-%2002%20sara's%20latte.wav"
+    },
+    {
+      "title": "aikenaut",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/rock%20for%20bass%20and%20drums%20volume%203/drew%20waters%20-%20rock%20for%20bass%20and%20drums-%20volume%203%20-%2003%20aikenaut.wav"
+    },
+    {
+      "title": "orange targa",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/rock%20for%20bass%20and%20drums%20volume%203/drew%20waters%20-%20rock%20for%20bass%20and%20drums-%20volume%203%20-%2004%20orange%20targa.wav"
+    },
+    {
+      "title": "ziva blooms",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/rock%20for%20bass%20and%20drums%20volume%203/drew%20waters%20-%20rock%20for%20bass%20and%20drums-%20volume%203%20-%2005%20ziva%20blooms.wav"
+    },
+    {
+      "title": "shiny red ten",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/rock%20for%20bass%20and%20drums%20volume%203/drew%20waters%20-%20rock%20for%20bass%20and%20drums-%20volume%203%20-%2006%20shiny%20red%20ten.wav"
+    },
+    {
+      "title": "mericana",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/rock%20for%20bass%20and%20drums%20volume%203/drew%20waters%20-%20rock%20for%20bass%20and%20drums-%20volume%203%20-%2007%20mericana.wav"
+    }
+  ]
 }
 ]
