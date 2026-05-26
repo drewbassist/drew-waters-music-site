@@ -593,7 +593,7 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
       URL.revokeObjectURL(downloadUrl);
     } catch (error) {
       console.error(error);
-      alert("download failed. check that your s3 files allow browser fetch / cors.");
+      alert(`download failed: ${error.message}`);
     } finally {
       if (button) {
         button.disabled = false;
