@@ -569,41 +569,41 @@
   "id": "department_of_homeland_recording",
   "title": "department of homeland recording",
   "year": "2009",
-  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/department%20of%20homeland%20recording%20cover.png",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/drew%20waters%20-%20department%20of%20homeland%20recording%20-%20dofh_full.png",
   "notes": "<p>i used to teach music at csu monterey bay, on the site of the former u.s. army base fort ord. the music department is in a decommissioned multi-denominational church. most of the recording took place within this building.</p><p>i chose to arrange the compositions for drums and trumpet because they are quintessentially two instruments closely associated with the military: they can be both loud and portable.</p><p>i thought about the church being a place where families would gather before a soldier left, and a place to gather when a soldier returned.</p><p>being in this former military environment, being very close to the water, spending time surfing at fort ord dunes state park, looking west waiting for waves....i began to wonder...how could i bring more meaning to the place where i am and tie together my environment with the environment of a fort ord resident of the past?</p><p>these compositions and the accompanying images represent the return of wo1 freddie nicklys chase.</p><p>his tour in vietnam began monday, february 3, 1969, ending just over 4 weeks later.</p><p>this process brought up concepts of return, home, past and accepting the present.</p><p>his return begins from the coast.</p>",
   "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">released september 4, 2009</div>\n        <div class=\"dw-credit-line\">shane endsley · trumpet</div>\n        <div class=\"dw-credit-line\">alex vittum · drums</div>\n        <div class=\"dw-credit-line\">drew waters · bass, piccolo bass, piano, glockenspiel, sounds</div>\n        <div class=\"dw-credit-line\">composed, recorded and mixed by drew waters</div>\n        <div class=\"dw-credit-line\">trumpet engineering by nate wood</div>\n        <div class=\"dw-credit-line\">mastered by scott craggs at old colony mastering</div>\n      ",
   "tracks": [
     {
-      "title": "his return begins from the coast",
-      "audio": "PASTE_TRACK_01_URL_HERE"
+      "title": "beach",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2001%20beach.wav"
     },
     {
-      "title": "track 2",
-      "audio": "PASTE_TRACK_02_URL_HERE"
+      "title": "dunes",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2002%20dunes.wav"
     },
     {
-      "title": "track 3",
-      "audio": "PASTE_TRACK_03_URL_HERE"
+      "title": "path",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2003%20path.wav"
     },
     {
-      "title": "track 4",
-      "audio": "PASTE_TRACK_04_URL_HERE"
+      "title": "bridge",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2004%20bridge.wav"
     },
     {
-      "title": "track 5",
-      "audio": "PASTE_TRACK_05_URL_HERE"
+      "title": "barracks",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2005%20barracks.wav"
     },
     {
-      "title": "track 6",
-      "audio": "PASTE_TRACK_06_URL_HERE"
+      "title": "town",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2006%20town.wav"
     },
     {
-      "title": "track 7",
-      "audio": "PASTE_TRACK_07_URL_HERE"
+      "title": "church",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2007%20church.wav"
     },
     {
-      "title": "track 8",
-      "audio": "PASTE_TRACK_08_URL_HERE"
+      "title": "home",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2008%20home.wav"
     }
   ]
 },
