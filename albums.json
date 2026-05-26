@@ -192,8 +192,8 @@
     "title": "ny_la for bass and drums volume 2",
     "year": "2025",
     "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/joe_abba_drew_waters_volume2.png",
-    "notes": "bass and drums duo recordings by joe abba and drew waters.",
-    "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · guitar</div>\n        <div class=\"dw-credit-line\">joe abba · drums</div>\n        <div class=\"dw-credit-line\">recorded in los angeles and nyc, 19 february 2025</div>\n      ",
+    "notes": "these concepts may have begun in the late 90s",
+    "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">joe abba · drums, drum tracking</div>\n        <div class=\"dw-credit-line\">drew waters · piccolo bass, tracking, mixing</div>\n        <div class=\"dw-credit-line\">recorded in los angeles and nyc, 20 august 2024</div>\n      ",
     "tracks": [
       {
         "title": "diving",
@@ -214,8 +214,8 @@
   "title": "lofi monologues volume 2",
   "year": "2026",
   "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/lofi_monologues.png",
-  "notes": "hardware-based minimal compositions built from repetition, saturation, reduction, and unstable timing relationships.",
-  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · recording, production, synths, drum machines</div>\n        <div class=\"dw-credit-line\">recorded in los angeles, 2026</div>\n      ",
+  "notes": "different-ish direction, similar components and references. no synths were harmed or used in the making of this production. all sounds derived from my guitar/bass and a series of pedals and routing. the mere messing with the adsr of a transient creates synth-like attacks. something that i'll love until I die. add some stutters, reverbs, lo-fi eq, some simple repetitive drum grooves, barely any melody and patience...",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · sounds, guitar</div>\n        <div class=\"dw-credit-line\">recorded in los angeles, 3 april 2025</div>\n      ",
   "tracks": [
     {
       "title": "chat, 217_03",
