@@ -441,6 +441,45 @@
     </div>
   `;
 
+  function saveCurrentAlbum(index) {
+    try {
+      localStorage.setItem("dw-current-album", String(index));
+    } catch (error) {
+      console.warn("could not save current album", error);
+    }
+  }
+
+  function getSavedAlbumIndex() {
+    try {
+      const savedAlbum = parseInt(localStorage.getItem("dw-current-album"), 10);
+
+      if (
+        !isNaN(savedAlbum) &&
+        savedAlbum >= 0 &&
+        savedAlbum < albums.length
+      ) {
+        return savedAlbum;
+      }
+    } catch (error) {
+      console.warn("could not read saved album", error);
+    }
+
+    return 0;
+  }
+
+  function scrollActiveAlbumIntoView(blockPosition = "center") {
+    setTimeout(() => {
+      const activeCard = document.querySelector(".dw-album-card.active");
+
+      if (activeCard) {
+        activeCard.scrollIntoView({
+          behavior: "auto",
+          block: blockPosition
+        });
+      }
+    }, 100);
+  }
+
   function pauseOtherAudio(currentAudio) {
     document.querySelectorAll("audio").forEach(audio => {
       if (audio !== currentAudio) {
@@ -784,6 +823,7 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
         mobileOpenAlbum = index;
       }
 
+      saveCurrentAlbum(index);
       renderAlbums();
 
       setTimeout(() => {
@@ -802,6 +842,7 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
     }
 
     currentAlbum = index;
+    saveCurrentAlbum(index);
 
     renderAlbums();
     renderPlayer();
@@ -834,13 +875,16 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
         throw new Error("albums.json is empty or not formatted as an array");
       }
 
-      currentAlbum = 0;
-      mobileOpenAlbum = -1;
+      currentAlbum = getSavedAlbumIndex();
+      mobileOpenAlbum = window.innerWidth <= 850 ? currentAlbum : -1;
 
       renderAlbums();
 
       if (window.innerWidth > 850) {
         renderPlayer();
+        scrollActiveAlbumIntoView("center");
+      } else {
+        scrollActiveAlbumIntoView("start");
       }
     } catch (error) {
       console.error(error);
@@ -867,6 +911,7 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
 
     if (window.innerWidth > 850) {
       renderPlayer();
+      scrollActiveAlbumIntoView("center");
     }
   });
 
