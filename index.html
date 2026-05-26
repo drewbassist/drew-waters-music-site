@@ -7,6 +7,8 @@
   <title>Drew Waters Music</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+
   <style>
     html, body {
       margin: 0;
@@ -38,13 +40,11 @@
       font-weight: 400;
       color: #000000;
       letter-spacing: 0.02em;
-
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 9999;
-
       background: #ffffff;
       padding: 22px 22px 12px 22px;
       box-sizing: border-box;
@@ -190,6 +190,31 @@
       font-size: 11px;
       color: #666666;
       margin-bottom: 12px;
+    }
+
+    .dw-download-button {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid #d7d7d7;
+      background: #ffffff;
+      color: #111111;
+      font-size: 11px;
+      font-family: inherit;
+      text-transform: lowercase;
+      cursor: pointer;
+      transition: background .18s ease, border-color .18s ease, opacity .18s ease;
+    }
+
+    .dw-download-button:hover {
+      background: #eeeeee;
+      border-color: #bbbbbb;
+    }
+
+    .dw-download-button:disabled {
+      opacity: .45;
+      cursor: wait;
     }
 
     .dw-album-notes {
@@ -405,6 +430,7 @@
           <div>
             <div class="dw-now-title" id="nowTitle"></div>
             <div class="dw-now-album" id="nowAlbum"></div>
+            <button class="dw-download-button" id="downloadAlbumButton" onclick="downloadAlbum(currentAlbum, this)">download album</button>
             <div class="dw-album-notes" id="albumNotes"></div>
           </div>
         </div>
@@ -452,6 +478,130 @@
     }, 120);
   }
 
+  function cleanTextFromHtml(html) {
+    const div = document.createElement("div");
+    div.innerHTML = html || "";
+    return div.textContent || div.innerText || "";
+  }
+
+  function safeFilename(text) {
+    return String(text || "album")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "");
+  }
+
+  function getFileExtension(url, fallback) {
+    try {
+      const cleanUrl = String(url).split("?")[0];
+      const lastPart = cleanUrl.split("/").pop() || "";
+      const extension = lastPart.includes(".")
+        ? lastPart.split(".").pop()
+        : fallback;
+
+      return extension || fallback;
+    } catch (error) {
+      return fallback;
+    }
+  }
+
+  async function addUrlToZip(zip, url, filename) {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`could not download ${url}`);
+    }
+
+    const blob = await response.blob();
+    zip.file(filename, blob);
+  }
+
+  async function downloadAlbum(albumIndex, button) {
+    const album = albums[albumIndex];
+
+    if (!album || !window.JSZip) {
+      alert("download is not ready yet.");
+      return;
+    }
+
+    const originalButtonText = button ? button.innerText : "";
+
+    try {
+      if (button) {
+        button.disabled = true;
+        button.innerText = "preparing zip...";
+      }
+
+      const zip = new JSZip();
+      const albumFolderName = safeFilename(album.title || album.id || "album");
+      const folder = zip.folder(albumFolderName);
+
+      const notesText = `
+${album.title || ""}
+${album.year || ""}
+
+notes
+${cleanTextFromHtml(album.notes || "").trim()}
+
+credits
+${cleanTextFromHtml(album.credits || "").trim()}
+
+tracks
+${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "untitled"}`).join("\n")}
+`.trim();
+
+      folder.file("notes.txt", notesText);
+
+      if (album.cover) {
+        const coverExtension = getFileExtension(album.cover, "png");
+        await addUrlToZip(folder, album.cover, `cover.${coverExtension}`);
+      }
+
+      for (let i = 0; i < (album.tracks || []).length; i++) {
+        const track = album.tracks[i];
+
+        if (!track.audio) {
+          continue;
+        }
+
+        if (button) {
+          button.innerText = `adding track ${i + 1}...`;
+        }
+
+        const audioExtension = getFileExtension(track.audio, "wav");
+        const trackNumber = String(i + 1).padStart(2, "0");
+        const trackTitle = safeFilename(track.title || `track_${trackNumber}`);
+        const audioFilename = `${trackNumber}_${trackTitle}.${audioExtension}`;
+
+        await addUrlToZip(folder, track.audio, audioFilename);
+      }
+
+      if (button) {
+        button.innerText = "creating zip...";
+      }
+
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+      const downloadUrl = URL.createObjectURL(zipBlob);
+
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.download = `${albumFolderName}.zip`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(downloadUrl);
+    } catch (error) {
+      console.error(error);
+      alert("download failed. check that your s3 files allow browser fetch / cors.");
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.innerText = originalButtonText || "download album";
+      }
+    }
+  }
+
   function renderAlbums() {
     const albumList = document.getElementById("albumList");
     if (!albumList || !Array.isArray(albums)) return;
@@ -493,6 +643,7 @@
 
                   <div class="dw-now-title">${album.title}</div>
                   <div class="dw-now-album">${album.year}</div>
+                  <button class="dw-download-button" onclick="downloadAlbum(${index}, this)">download album</button>
                   <div class="dw-album-notes">${album.notes || ""}</div>
 
                   <div class="dw-tracks">
