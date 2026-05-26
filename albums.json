@@ -643,5 +643,75 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/rock%20for%20bass%20and%20drums%20volume%203/drew%20waters%20-%20rock%20for%20bass%20and%20drums-%20volume%203%20-%2007%20mericana.wav"
     }
   ]
+},
+  {
+  "id": "the_looping_pool",
+  "title": "the looping pool",
+  "year": "2019",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/the%20looping%20pool%20cover.jpg",
+  "notes": "a collection of looping compositions built from layered textures, repetition, and evolving harmonic movement. recorded and assembled in 2019.",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · composition, performance, recording, production</div>\n        <div class=\"dw-credit-line\">recorded and produced by drew waters</div>\n        <div class=\"dw-credit-line\">2019</div>\n      ",
+  "tracks": [
+    {
+      "title": "looping 1",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2001%20looping_1.wav"
+    },
+    {
+      "title": "riptide",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2002%20riptide.wav"
+    },
+    {
+      "title": "slow loose dark",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2003%20slow%20loose%20dark.wav"
+    },
+    {
+      "title": "vexation day",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2004%20vexation%20day.wav"
+    },
+    {
+      "title": "cairns",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2005%20cairns.wav"
+    },
+    {
+      "title": "10 buck zombie film",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2006%2010%20buck%20zombie%20film.wav"
+    },
+    {
+      "title": "couch documentary",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2007%20couch%20documentary.wav"
+    },
+    {
+      "title": "directions",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2008%20directions.wav"
+    },
+    {
+      "title": "fig",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2009%20fig.wav"
+    },
+    {
+      "title": "orange glow",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2010%20orange%20glow.wav"
+    },
+    {
+      "title": "speakeasy",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2011%20speakeasy.wav"
+    },
+    {
+      "title": "the spider that lives in the bush",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2012%20the%20spider%20that%20lives%20in%20the%20bush.wav"
+    },
+    {
+      "title": "striped socks",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2013%20striped%20socks.wav"
+    },
+    {
+      "title": "unsure",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2014%20unsure.wav"
+    },
+    {
+      "title": "directions 2",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2015%20directions_2.wav"
+    }
+  ]
 }
 ]
