@@ -454,7 +454,7 @@
     const album = albums[albumIndex];
     const nextTrackIndex = trackIndex + 1;
 
-    if (!album || nextTrackIndex >= album.tracks.length) {
+    if (!album || !album.tracks || nextTrackIndex >= album.tracks.length) {
       return;
     }
 
@@ -506,14 +506,21 @@
   }
 
   async function addUrlToZip(zip, url, filename) {
-    const response = await fetch(url);
+    try {
+      const response = await fetch(url);
 
-    if (!response.ok) {
-      throw new Error(`could not download ${url}`);
+      if (!response.ok) {
+        console.warn(`skipped ${filename}: ${response.status} ${url}`);
+        return false;
+      }
+
+      const blob = await response.blob();
+      zip.file(filename, blob);
+      return true;
+    } catch (error) {
+      console.warn(`skipped ${filename}: ${url}`, error);
+      return false;
     }
-
-    const blob = await response.blob();
-    zip.file(filename, blob);
   }
 
   async function downloadAlbum(albumIndex, button) {
@@ -525,6 +532,7 @@
     }
 
     const originalButtonText = button ? button.innerText : "";
+    const skippedFiles = [];
 
     try {
       if (button) {
@@ -553,14 +561,25 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
       folder.file("notes.txt", notesText);
 
       if (album.cover) {
+        if (button) {
+          button.innerText = "adding cover...";
+        }
+
         const coverExtension = getFileExtension(album.cover, "png");
-        await addUrlToZip(folder, album.cover, `cover.${coverExtension}`);
+        const coverAdded = await addUrlToZip(folder, album.cover, `cover.${coverExtension}`);
+
+        if (!coverAdded) {
+          skippedFiles.push(`cover: ${album.cover}`);
+        }
       }
+
+      let addedTrackCount = 0;
 
       for (let i = 0; i < (album.tracks || []).length; i++) {
         const track = album.tracks[i];
 
         if (!track.audio) {
+          skippedFiles.push(`track ${i + 1}: missing audio url`);
           continue;
         }
 
@@ -573,7 +592,17 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
         const trackTitle = safeFilename(track.title || `track_${trackNumber}`);
         const audioFilename = `${trackNumber}_${trackTitle}.${audioExtension}`;
 
-        await addUrlToZip(folder, track.audio, audioFilename);
+        const trackAdded = await addUrlToZip(folder, track.audio, audioFilename);
+
+        if (trackAdded) {
+          addedTrackCount++;
+        } else {
+          skippedFiles.push(`${trackNumber} ${track.title || "untitled"}: ${track.audio}`);
+        }
+      }
+
+      if (skippedFiles.length > 0) {
+        folder.file("skipped-files.txt", skippedFiles.join("\n"));
       }
 
       if (button) {
@@ -591,6 +620,14 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
       document.body.removeChild(link);
 
       URL.revokeObjectURL(downloadUrl);
+
+      if (skippedFiles.length > 0) {
+        console.warn("download completed with skipped files", skippedFiles);
+      }
+
+      if (addedTrackCount === 0 && (album.tracks || []).length > 0) {
+        alert("zip created, but no audio files could be added. check the skipped-files.txt inside the zip and verify the s3 urls.");
+      }
     } catch (error) {
       console.error(error);
       alert(`download failed: ${error.message}`);
@@ -626,7 +663,7 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
 
             <div>
               <div class="dw-album-title">${album.title}</div>
-              <div class="dw-album-meta">${album.year}</div>
+              <div class="dw-album-meta">${album.year || ""}</div>
             </div>
           </div>
 
@@ -642,7 +679,7 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
                   }
 
                   <div class="dw-now-title">${album.title}</div>
-                  <div class="dw-now-album">${album.year}</div>
+                  <div class="dw-now-album">${album.year || ""}</div>
                   <button class="dw-download-button" onclick="downloadAlbum(${index}, this)">download album</button>
                   <div class="dw-album-notes">${album.notes || ""}</div>
 
@@ -698,7 +735,7 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
     }
 
     document.getElementById("nowTitle").innerText = album.title;
-    document.getElementById("nowAlbum").innerText = album.year;
+    document.getElementById("nowAlbum").innerText = album.year || "";
     document.getElementById("albumNotes").innerHTML = album.notes || "";
 
     if (window.innerWidth <= 850) {
