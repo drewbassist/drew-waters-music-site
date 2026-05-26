@@ -409,5 +409,35 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/duets%20for%20distant%20drums%20and%20bass/dave_drew_song_3.wav"
     }
   ]
+},
+  {
+  "id": "discussions_for_bass_and_drums_volume_2",
+  "title": "discussions for bass and drums: volume 2",
+  "year": "2023",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/discussions%20for%20bass%20and%20drums%20volume%202.png",
+  "notes": "The second volume in the discussions for bass and drums series. Bass, drums, improvisation, composition, and response.",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · bass</div>\n        <div class=\"dw-credit-line\">matt aiken · drums</div>\n        <div class=\"dw-credit-line\">recorded 2023</div>\n      ",
+  "tracks": [
+    {
+      "title": "tracking, monitoring, mapping",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%3A%20volume%202/matt_drew_10_15_23.wav"
+    },
+    {
+      "title": "too close for a galactic stamp",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%3A%20volume%202/aiken_waters_12_10_2023_premaster.wav"
+    },
+    {
+      "title": "all the rays that bounce to orange",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%3A%20volume%202/all_the_rays_that_bounce_to_orange_premaster_2024_v5_05.wav"
+    },
+    {
+      "title": "for cycles",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%3A%20volume%202/for%20cycles_01-01.wav"
+    },
+    {
+      "title": "speed of five",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%3A%20volume%202/aiken_waters_dec_17_2023_v2_premaster.wav"
+    }
+  ]
 }
 ]
