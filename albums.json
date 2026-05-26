@@ -563,5 +563,47 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/dru3m0chin3st/drew%20waters%20-%20dru3m0chin3st%20-%2008%20tr_303_8.wav"
     }
   ]
+},
+  {
+  "id": "department_of_homeland_recording",
+  "title": "department of homeland recording",
+  "year": "2026",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/drew%20waters%20-%20department%20of%20homeland%20recording%20-%20dofh_full.png",
+  "notes": "a collection of ambient, cinematic recordings built from sparse textures, environmental space, and slow-moving harmonic landscapes.",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · composition, recording, production</div>\n        <div class=\"dw-credit-line\">recorded in los angeles, california</div>\n      ",
+  "tracks": [
+    {
+      "title": "beach",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2001%20beach.wav"
+    },
+    {
+      "title": "dunes",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2002%20dunes.wav"
+    },
+    {
+      "title": "path",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2003%20path.wav"
+    },
+    {
+      "title": "bridge",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2004%20bridge.wav"
+    },
+    {
+      "title": "barracks",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2005%20barracks.wav"
+    },
+    {
+      "title": "town",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2006%20town.wav"
+    },
+    {
+      "title": "church",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2007%20church.wav"
+    },
+    {
+      "title": "home",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/department%20of%20homeland%20recording/drew%20waters%20-%20department%20of%20homeland%20recording%20-%2008%20home.wav"
+    }
+  ]
 }
 ]
