@@ -361,5 +361,31 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass%20and%20drums%20volume%203/Matt_Matt_Drew_05_01_24_v2_rough_pre_belzer.wav"
     }
   ]
+},
+  {
+  "id": "discussions_for_bass_saxophone_and_drums_volume_1",
+  "title": "discussions for bass, saxophone and drums, volume 1",
+  "year": "2024",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/discussions%20for%20bass%20saxophone%20and%20drums%20volume%201.png",
+  "notes": "improvised conversations for bass, saxophone, and drums exploring collective texture, space, momentum, and response.",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">matt belzer · saxophone</div>\n        <div class=\"dw-credit-line\">matt aiken · drums</div>\n        <div class=\"dw-credit-line\">drew waters · bass, recording, production</div>\n        <div class=\"dw-credit-line\">recorded in california, 2024</div>\n      ",
+  "tracks": [
+    {
+      "title": "gone down in purple",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass,%20saxophone%20and%20drums,%20volume%201/matt_matt_drew_3_27_24_post_belzer_01.wav"
+    },
+    {
+      "title": "branch is black",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass,%20saxophone%20and%20drums,%20volume%201/matt_matt_drew_3_28_24_post_belzer_01_01.wav"
+    },
+    {
+      "title": "slender green stem",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass,%20saxophone%20and%20drums,%20volume%201/matt_matt_drew_3_29_24_post_belzer_6_19_24_01.wav"
+    },
+    {
+      "title": "his twenty rays",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/discussions%20for%20bass,%20saxophone%20and%20drums,%20volume%201/matt_matt_drew_4_16_24_post_belzer_6_25_24.wav"
+    }
+  ]
 }
 ]
