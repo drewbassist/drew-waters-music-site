@@ -521,5 +521,47 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/standards_two/unconfirmed_master.wav"
     }
   ]
+},
+  {
+  "id": "dru3m0chin3st",
+  "title": "dru3m0chin3st",
+  "year": "2026",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/dru3m0chin3st%20cover.jpg",
+  "notes": "",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">drew waters · recording, production</div>\n        <div class=\"dw-credit-line\">recorded in los angeles, 2026</div>\n      ",
+  "tracks": [
+    {
+      "title": "01 tr 303 1",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/dru3m0chin3st/drew%20waters%20-%20dru3m0chin3st%20-%2001%20tr_303_1.wav"
+    },
+    {
+      "title": "02 tr 303 2",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/dru3m0chin3st/drew%20waters%20-%20dru3m0chin3st%20-%2002%20tr_303_2.wav"
+    },
+    {
+      "title": "03 tr 303 3",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/dru3m0chin3st/drew%20waters%20-%20dru3m0chin3st%20-%2003%20tr_303_3.wav"
+    },
+    {
+      "title": "04 tr 303 4",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/dru3m0chin3st/drew%20waters%20-%20dru3m0chin3st%20-%2004%20tr_303_4.wav"
+    },
+    {
+      "title": "05 tr 303 5",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/dru3m0chin3st/drew%20waters%20-%20dru3m0chin3st%20-%2005%20tr_303_5.wav"
+    },
+    {
+      "title": "06 tr 303 6",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/dru3m0chin3st/drew%20waters%20-%20dru3m0chin3st%20-%2006%20tr_303_6.wav"
+    },
+    {
+      "title": "07 tr 303 7",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/dru3m0chin3st/drew%20waters%20-%20dru3m0chin3st%20-%2007%20tr_303_7.wav"
+    },
+    {
+      "title": "08 tr 303 8",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/dru3m0chin3st/drew%20waters%20-%20dru3m0chin3st%20-%2008%20tr_303_8.wav"
+    }
+  ]
 }
 ]
