@@ -713,5 +713,23 @@
       "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/the%20looping%20pool/drew%20waters%20-%20the%20looping%20pool%20-%2015%20directions_2.wav"
     }
   ]
+},
+  {
+  "id": "unconformities",
+  "title": "unconformities",
+  "year": "2017",
+  "cover": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_images/unconformities%20cover.png",
+  "notes": "a collaboration between bill pfaff and drew waters exploring texture, landscape, improvisation, and long-form sonic environments. recorded and released in 2017.",
+  "credits": "\n        <div class=\"dw-credits-title\">credits</div>\n        <div class=\"dw-credit-line\">bill pfaff · bass, composition, production</div>\n        <div class=\"dw-credit-line\">drew waters · guitar, composition, production</div>\n        <div class=\"dw-credit-line\">recorded and produced by bill pfaff and drew waters</div>\n        <div class=\"dw-credit-line\">2017</div>\n      ",
+  "tracks": [
+    {
+      "title": "unconformities",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/unconformities/bill%20pfaff%20drew%20waters%20-%20unconformities%20-%2001%20unconformities.wav"
+    },
+    {
+      "title": "etched in sacred time",
+      "audio": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/album_audio/unconformities/bill%20pfaff%20drew%20waters%20-%20unconformities%20-%2002%20etched%20in%20sacred%20time.wav"
+    }
+  ]
 }
 ]
