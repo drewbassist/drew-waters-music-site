@@ -785,18 +785,29 @@ function renderFilmPlayer() {
     <div class="dw-now-album">${film.year || ""} ${film.format ? "· " + film.format : ""}</div>
 
     ${
-      film.video
-        ? `<video
-             controls
-             playsinline
-             preload="metadata"
-             poster="${film.poster || film.cover || ""}"
-             style="width:100%; max-width:520px; border-radius:12px; margin:18px 0;"
-           >
-             <source src="${film.video}" type="video/mp4">
-           </video>`
-        : `<div class="dw-album-notes">video coming soon</div>`
-    }
+  film.video
+    ? `
+      <div style="display:flex; justify-content:center;">
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          poster="${film.poster || film.cover || ""}"
+          style="
+            width:100%;
+            max-width:360px;
+            border-radius:12px;
+            margin:18px auto 24px auto;
+            display:block;
+            background:#000;
+          "
+        >
+          <source src="${film.video}" type="video/mp4">
+        </video>
+      </div>
+    `
+    : `<div class="dw-album-notes">video coming soon</div>`
+}
 
     <div class="dw-album-notes">${film.notes || ""}</div>
     <div class="dw-credits">${film.credits || ""}</div>
