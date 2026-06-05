@@ -717,7 +717,91 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
       }
     }
   }
+function switchSection(section) {
+  currentSection = section;
 
+  document.querySelectorAll(".dw-nav-item").forEach(item => {
+    item.classList.remove("active");
+  });
+
+  if (section === "music") {
+    document.querySelectorAll(".dw-nav-item")[0].classList.add("active");
+    renderAlbums();
+    renderPlayer();
+  }
+
+  if (section === "films") {
+    document.querySelectorAll(".dw-nav-item")[1].classList.add("active");
+    renderFilms();
+    renderFilmPlayer();
+  }
+}
+
+function renderFilms() {
+  const albumList = document.getElementById("albumList");
+  if (!albumList || !Array.isArray(films)) return;
+
+  albumList.innerHTML =
+    films.map((film, index) => `
+      <div class="dw-album-wrap">
+        <div
+          class="dw-album-card ${index === currentFilm ? "active" : ""}"
+          onclick="selectFilm(${index})"
+        >
+          ${
+            film.poster || film.cover
+              ? `<img src="${film.poster || film.cover}" alt="${film.title} poster">`
+              : `<div class="dw-cover-placeholder"></div>`
+          }
+
+          <div>
+            <div class="dw-album-title">${film.title}</div>
+            <div class="dw-album-meta">${film.year || ""}</div>
+          </div>
+        </div>
+      </div>
+    `).join("");
+}
+
+function selectFilm(index) {
+  document.querySelectorAll("audio, video").forEach(media => {
+    media.pause();
+    media.currentTime = 0;
+  });
+
+  currentFilm = index;
+  renderFilms();
+  renderFilmPlayer();
+}
+
+function renderFilmPlayer() {
+  const film = films[currentFilm];
+  if (!film) return;
+
+  const player = document.querySelector(".dw-player");
+
+  player.innerHTML = `
+    <div class="dw-now-title">${film.title}</div>
+    <div class="dw-now-album">${film.year || ""} ${film.format ? "· " + film.format : ""}</div>
+
+    ${
+      film.video
+        ? `<video
+             controls
+             playsinline
+             preload="metadata"
+             poster="${film.poster || film.cover || ""}"
+             style="width:100%; border-radius:12px; margin:18px 0;"
+           >
+             <source src="${film.video}" type="video/mp4">
+           </video>`
+        : `<div class="dw-album-notes">video coming soon</div>`
+    }
+
+    <div class="dw-album-notes">${film.notes || ""}</div>
+    <div class="dw-credits">${film.credits || ""}</div>
+  `;
+}
   function renderAlbums() {
     const albumList = document.getElementById("albumList");
     if (!albumList || !Array.isArray(albums)) return;
