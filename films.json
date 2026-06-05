@@ -1,1 +1,12 @@
-
+[
+  {
+    "id": "barry",
+    "title": "barry",
+    "year": "2017",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/barry_2017_02_21.mp4",
+    "notes": "super 8 short film",
+    "credits": "drew waters"
+  }
+]
