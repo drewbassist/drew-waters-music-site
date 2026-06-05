@@ -49,33 +49,32 @@
       padding: 22px 22px 12px 22px;
       box-sizing: border-box;
     }
-.dw-nav {
-  margin-top: 4px;
-  font-size: 12px;
-  color: #666666;
-}
 
-.dw-nav-item {
-  cursor: pointer;
-  transition: color .18s ease;
-}
+    .dw-nav {
+      margin-top: 4px;
+      font-size: 12px;
+      color: #666666;
+    }
 
-.dw-nav-item:hover {
-  color: #000000;
-}
+    .dw-nav-item {
+      cursor: pointer;
+      transition: color .18s ease;
+    }
 
-.dw-nav-item.active {
-  color: #000000;
-}
+    .dw-nav-item:hover,
+    .dw-nav-item.active {
+      color: #000000;
+    }
 
-.dw-nav-divider {
-  margin: 0 8px;
-}
+    .dw-nav-divider {
+      margin: 0 8px;
+    }
+
     .dw-subtitle {
-  color: #666666;
-  font-size: 12px;
-  margin-bottom: 95px;
-}
+      color: #666666;
+      font-size: 12px;
+      margin-bottom: 95px;
+    }
 
     .dw-layout {
       display: grid;
@@ -428,32 +427,27 @@
 
 <script>
   let albums = [];
-let films = [];
+  let films = [];
 
-let currentAlbum = 0;
-let currentFilm = 0;
-let mobileOpenAlbum = -1;
+  let currentAlbum = 0;
+  let currentFilm = 0;
+  let mobileOpenAlbum = -1;
 
-let currentSection = "music";
+  let currentSection = "music";
 
   const app = document.getElementById("dw-app");
 
   app.innerHTML = `
     <div class="dw-title">
-  <div>drew waters</div>
+      <div>drew waters</div>
 
-  <div class="dw-nav">
-    <span class="dw-nav-item active" onclick="switchSection('music')">
-      music
-    </span>
+      <div class="dw-nav">
+        <span class="dw-nav-item active" onclick="switchSection('music')">music</span>
+        <span class="dw-nav-divider">|</span>
+        <span class="dw-nav-item" onclick="switchSection('films')">films</span>
+      </div>
+    </div>
 
-    <span class="dw-nav-divider">|</span>
-
-    <span class="dw-nav-item" onclick="switchSection('films')">
-      films
-    </span>
-  </div>
-</div>
     <div class="dw-subtitle"></div>
 
     <div class="dw-layout">
@@ -481,6 +475,30 @@ let currentSection = "music";
     </div>
   `;
 
+  function restoreMusicPlayerShell() {
+    const player = document.querySelector(".dw-player");
+
+    player.innerHTML = `
+      <div class="dw-player-top" id="playerTop">
+        <img
+          class="dw-cover-large"
+          id="coverLarge"
+          onclick="openLightbox()"
+        >
+
+        <div>
+          <div class="dw-now-title" id="nowTitle"></div>
+          <div class="dw-now-album" id="nowAlbum"></div>
+          <button class="dw-download-button" id="downloadAlbumButton" onclick="downloadAlbum(currentAlbum, this)">download album</button>
+          <div class="dw-album-notes" id="albumNotes"></div>
+        </div>
+      </div>
+
+      <div class="dw-tracks" id="trackList"></div>
+      <div class="dw-credits" id="albumCredits"></div>
+    `;
+  }
+
   function saveCurrentAlbum(index) {
     try {
       localStorage.setItem("dw-current-album", String(index));
@@ -502,6 +520,32 @@ let currentSection = "music";
       }
     } catch (error) {
       console.warn("could not read saved album", error);
+    }
+
+    return 0;
+  }
+
+  function saveCurrentFilm(index) {
+    try {
+      localStorage.setItem("dw-current-film", String(index));
+    } catch (error) {
+      console.warn("could not save current film", error);
+    }
+  }
+
+  function getSavedFilmIndex() {
+    try {
+      const savedFilm = parseInt(localStorage.getItem("dw-current-film"), 10);
+
+      if (
+        !isNaN(savedFilm) &&
+        savedFilm >= 0 &&
+        savedFilm < films.length
+      ) {
+        return savedFilm;
+      }
+    } catch (error) {
+      console.warn("could not read saved film", error);
     }
 
     return 0;
@@ -717,102 +761,112 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
       }
     }
   }
-function switchSection(section) {
-  currentSection = section;
 
-  document.querySelectorAll(".dw-nav-item").forEach(item => {
-    item.classList.remove("active");
-  });
+  function switchSection(section) {
+    currentSection = section;
 
-  if (section === "music") {
-    document.querySelectorAll(".dw-nav-item")[0].classList.add("active");
-    renderAlbums();
-    renderPlayer();
+    try {
+      localStorage.setItem("dw-current-section", section);
+    } catch (error) {
+      console.warn("could not save current section", error);
+    }
+
+    document.querySelectorAll(".dw-nav-item").forEach(item => {
+      item.classList.remove("active");
+    });
+
+    if (section === "music") {
+      document.querySelectorAll(".dw-nav-item")[0].classList.add("active");
+      restoreMusicPlayerShell();
+      renderAlbums();
+      renderPlayer();
+    }
+
+    if (section === "films") {
+      document.querySelectorAll(".dw-nav-item")[1].classList.add("active");
+      renderFilms();
+      renderFilmPlayer();
+    }
   }
 
-  if (section === "films") {
-    document.querySelectorAll(".dw-nav-item")[1].classList.add("active");
+  function renderFilms() {
+    const albumList = document.getElementById("albumList");
+    if (!albumList || !Array.isArray(films)) return;
+
+    albumList.innerHTML =
+      films.map((film, index) => `
+        <div class="dw-album-wrap">
+          <div
+            class="dw-album-card ${index === currentFilm ? "active" : ""}"
+            onclick="selectFilm(${index})"
+          >
+            ${
+              film.poster || film.cover
+                ? `<img src="${film.poster || film.cover}" alt="${film.title} poster">`
+                : `<div class="dw-cover-placeholder"></div>`
+            }
+
+            <div>
+              <div class="dw-album-title">${film.title}</div>
+              <div class="dw-album-meta">${film.year || ""}</div>
+            </div>
+          </div>
+        </div>
+      `).join("");
+  }
+
+  function selectFilm(index) {
+    document.querySelectorAll("audio, video").forEach(media => {
+      media.pause();
+      media.currentTime = 0;
+    });
+
+    currentFilm = index;
+    saveCurrentFilm(index);
     renderFilms();
     renderFilmPlayer();
   }
-}
 
-function renderFilms() {
-  const albumList = document.getElementById("albumList");
-  if (!albumList || !Array.isArray(films)) return;
+  function renderFilmPlayer() {
+    const film = films[currentFilm];
+    if (!film) return;
 
-  albumList.innerHTML =
-    films.map((film, index) => `
-      <div class="dw-album-wrap">
-        <div
-          class="dw-album-card ${index === currentFilm ? "active" : ""}"
-          onclick="selectFilm(${index})"
-        >
-          ${
-            film.poster || film.cover
-              ? `<img src="${film.poster || film.cover}" alt="${film.title} poster">`
-              : `<div class="dw-cover-placeholder"></div>`
-          }
+    const player = document.querySelector(".dw-player");
 
-          <div>
-            <div class="dw-album-title">${film.title}</div>
-            <div class="dw-album-meta">${film.year || ""}</div>
-          </div>
-        </div>
-      </div>
-    `).join("");
-}
+    player.innerHTML = `
+      <div class="dw-now-title">${film.title}</div>
+      <div class="dw-now-album">${film.year || ""} ${film.format ? "· " + film.format : ""}</div>
 
-function selectFilm(index) {
-  document.querySelectorAll("audio, video").forEach(media => {
-    media.pause();
-    media.currentTime = 0;
-  });
+      ${
+        film.video
+          ? `
+            <div style="display:flex; justify-content:center;">
+              <video
+                controls
+                playsinline
+                preload="metadata"
+                poster="${film.poster || film.cover || ""}"
+                style="
+                  width:100%;
+                  max-width:360px;
+                  border-radius:12px;
+                  margin:18px auto 24px auto;
+                  display:block;
+                  background:#000;
+                "
+              >
+                <source src="${film.video}" type="video/mp4">
+              </video>
+            </div>
+          `
+          : `<div class="dw-album-notes">video coming soon</div>`
+      }
 
-  currentFilm = index;
-  renderFilms();
-  renderFilmPlayer();
-}
+      <div class="dw-album-notes">${film.notes || ""}</div>
+      <div class="dw-credits">${film.credits || ""}</div>
+    `;
+  }
 
-function renderFilmPlayer() {
-  const film = films[currentFilm];
-  if (!film) return;
-
-  const player = document.querySelector(".dw-player");
-
-  player.innerHTML = `
-    <div class="dw-now-title">${film.title}</div>
-    <div class="dw-now-album">${film.year || ""} ${film.format ? "· " + film.format : ""}</div>
-
-    ${
-  film.video
-    ? `
-      <div style="display:flex; justify-content:center;">
-        <video
-          controls
-          playsinline
-          preload="metadata"
-          poster="${film.poster || film.cover || ""}"
-          style="
-            width:100%;
-            max-width:360px;
-            border-radius:12px;
-            margin:18px auto 24px auto;
-            display:block;
-            background:#000;
-          "
-        >
-          <source src="${film.video}" type="video/mp4">
-        </video>
-      </div>
-    `
-    : `<div class="dw-album-notes">video coming soon</div>`
-}
-
-    <div class="dw-album-notes">${film.notes || ""}</div>
-    <div class="dw-credits">${film.credits || ""}</div>
-  `;
-}
   function renderAlbums() {
     const albumList = document.getElementById("albumList");
     if (!albumList || !Array.isArray(albums)) return;
@@ -898,14 +952,21 @@ function renderFilmPlayer() {
     const playerTop = document.getElementById("playerTop");
     const coverLarge = document.getElementById("coverLarge");
 
+    if (!playerTop || !coverLarge) {
+      restoreMusicPlayerShell();
+    }
+
+    const restoredPlayerTop = document.getElementById("playerTop");
+    const restoredCoverLarge = document.getElementById("coverLarge");
+
     if (album.cover) {
-      playerTop.classList.add("has-cover");
-      coverLarge.src = album.cover;
-      coverLarge.style.display = "block";
+      restoredPlayerTop.classList.add("has-cover");
+      restoredCoverLarge.src = album.cover;
+      restoredCoverLarge.style.display = "block";
     } else {
-      playerTop.classList.remove("has-cover");
-      coverLarge.removeAttribute("src");
-      coverLarge.style.display = "none";
+      restoredPlayerTop.classList.remove("has-cover");
+      restoredCoverLarge.removeAttribute("src");
+      restoredCoverLarge.style.display = "none";
     }
 
     document.getElementById("nowTitle").innerText = album.title;
@@ -946,9 +1007,9 @@ function renderFilmPlayer() {
   }
 
   function selectAlbum(index) {
-    document.querySelectorAll("audio").forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
+    document.querySelectorAll("audio, video").forEach(media => {
+      media.pause();
+      media.currentTime = 0;
     });
 
     if (window.innerWidth <= 850) {
@@ -958,12 +1019,12 @@ function renderFilmPlayer() {
         mobileOpenAlbum = index;
       }
 
+      currentAlbum = index;
       saveCurrentAlbum(index);
       renderAlbums();
 
       setTimeout(() => {
-        const activeCard =
-          document.querySelector(".dw-album-card.active");
+        const activeCard = document.querySelector(".dw-album-card.active");
 
         if (activeCard) {
           activeCard.scrollIntoView({
@@ -1005,28 +1066,39 @@ function renderFilmPlayer() {
       }
 
       albums = await response.json();
+
       const filmResponse = await fetch("./films.json", { cache: "no-store" });
 
-if (filmResponse.ok) {
-  films = await filmResponse.json();
-} else {
-  films = [];
-}
+      if (filmResponse.ok) {
+        films = await filmResponse.json();
+      } else {
+        films = [];
+      }
 
       if (!Array.isArray(albums) || albums.length === 0) {
         throw new Error("albums.json is empty or not formatted as an array");
       }
 
       currentAlbum = getSavedAlbumIndex();
+      currentFilm = getSavedFilmIndex();
       mobileOpenAlbum = window.innerWidth <= 850 ? currentAlbum : -1;
 
-      renderAlbums();
+      try {
+        currentSection = localStorage.getItem("dw-current-section") || "music";
+      } catch (error) {
+        currentSection = "music";
+      }
 
-      if (window.innerWidth > 850) {
-        renderPlayer();
-        scrollActiveAlbumIntoView("center");
+      if (currentSection === "films") {
+        switchSection("films");
       } else {
-        scrollActiveAlbumIntoView("start");
+        switchSection("music");
+
+        if (window.innerWidth > 850) {
+          scrollActiveAlbumIntoView("center");
+        } else {
+          scrollActiveAlbumIntoView("start");
+        }
       }
     } catch (error) {
       console.error(error);
@@ -1036,7 +1108,7 @@ if (filmResponse.ok) {
         <div class="dw-subtitle"></div>
         <div class="dw-player">
           <div class="dw-now-title">albums could not load</div>
-          <div class="dw-album-notes">check that albums.json is in the same folder as index.html, then test with python3 -m http.server 8000 instead of double-clicking the file.</div>
+          <div class="dw-album-notes">check that albums.json and films.json are in the same folder as index.html, then test with python3 -m http.server 8000 instead of double-clicking the file.</div>
         </div>
       `;
     }
@@ -1049,20 +1121,20 @@ if (filmResponse.ok) {
   });
 
   window.addEventListener("resize", () => {
-  if (currentSection === "music") {
-    renderAlbums();
+    if (currentSection === "music") {
+      renderAlbums();
 
-    if (window.innerWidth > 850) {
-      renderPlayer();
-      scrollActiveAlbumIntoView("center");
+      if (window.innerWidth > 850) {
+        renderPlayer();
+        scrollActiveAlbumIntoView("center");
+      }
     }
-  }
 
-  if (currentSection === "films") {
-    renderFilms();
-    renderFilmPlayer();
-  }
-});
+    if (currentSection === "films") {
+      renderFilms();
+      renderFilmPlayer();
+    }
+  });
 
   initAlbums();
 </script>
