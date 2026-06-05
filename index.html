@@ -1049,13 +1049,20 @@ if (filmResponse.ok) {
   });
 
   window.addEventListener("resize", () => {
+  if (currentSection === "music") {
     renderAlbums();
 
     if (window.innerWidth > 850) {
       renderPlayer();
       scrollActiveAlbumIntoView("center");
     }
-  });
+  }
+
+  if (currentSection === "films") {
+    renderFilms();
+    renderFilmPlayer();
+  }
+});
 
   initAlbums();
 </script>
