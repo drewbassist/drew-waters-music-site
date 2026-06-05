@@ -413,7 +413,21 @@
   const app = document.getElementById("dw-app");
 
   app.innerHTML = `
-    <div class="dw-title">drew waters music</div>
+    <div class="dw-title">
+  <div>drew waters</div>
+
+  <div class="dw-nav">
+    <span class="dw-nav-item active" onclick="switchSection('music')">
+      music
+    </span>
+
+    <span class="dw-nav-divider">|</span>
+
+    <span class="dw-nav-item" onclick="switchSection('films')">
+      films
+    </span>
+  </div>
+</div>
     <div class="dw-subtitle"></div>
 
     <div class="dw-layout">
