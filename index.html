@@ -994,6 +994,13 @@ function renderFilmPlayer() {
       }
 
       albums = await response.json();
+      const filmResponse = await fetch("./films.json", { cache: "no-store" });
+
+if (filmResponse.ok) {
+  films = await filmResponse.json();
+} else {
+  films = [];
+}
 
       if (!Array.isArray(albums) || albums.length === 0) {
         throw new Error("albums.json is empty or not formatted as an array");
