@@ -1,12 +1,212 @@
 [
   {
-    "id": "barry",
+    "id": "barry_2017_02_21",
     "title": "barry",
     "year": "2017",
     "format": "super 8",
     "poster": "",
     "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/barry_2017_02_21.mp4",
-    "notes": "super 8 short film",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "bru_coffee_2016_11_22",
+    "title": "bru coffee",
+    "year": "2016",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/bru_coffee_2016_11_22.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "cemetary_2016_11_22",
+    "title": "cemetary",
+    "year": "2016",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/cemetary_2016_11_22.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "cemetary_burbank_2016_11_22",
+    "title": "cemetary burbank",
+    "year": "2016",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/cemetary_burbank_2016_11_22.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "craig_2017_12_05",
+    "title": "craig",
+    "year": "2017",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/craig_2017_12_05.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "ela_2017_04_02",
+    "title": "ela",
+    "year": "2017",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/ela_2017_04_02.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "empty_coffeeshops_2017_02_09",
+    "title": "empty coffeeshops",
+    "year": "2017",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/empty_coffeeshops_2017_02_09.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "erica_2017_04_02",
+    "title": "erica",
+    "year": "2017",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/erica_2017_04_02.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "gabe_2016_12_18",
+    "title": "gabe",
+    "year": "2016",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/gabe_2016_12_18.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "hollywood_2016_11_29",
+    "title": "hollywood",
+    "year": "2016",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/hollywood_2016_11_29.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "hollywood_forever_2016_11_22",
+    "title": "hollywood forever",
+    "year": "2016",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/hollywood_forever_2016_11_22.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "jen_2017_04_15",
+    "title": "jen",
+    "year": "2017",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/jen_2017_04_15.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "jett_2018_06_11",
+    "title": "jett",
+    "year": "2018",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/jett_2018_06_11.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "kristin_2017_01_14",
+    "title": "kristin",
+    "year": "2017",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/kristin_2017_01_14.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "laundromat_2017_01_28",
+    "title": "laundromat",
+    "year": "2017",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/laundromat_2017_01_28.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "lenise_2017_02_21",
+    "title": "lenise",
+    "year": "2017",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/lenise_2017_02_21.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "melissa_2017_02_01",
+    "title": "melissa",
+    "year": "2017",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/melissa_2017_02_01.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "mike_the_barber_2016_12_18",
+    "title": "mike the barber",
+    "year": "2016",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/mike_the_barber_2016_12_18.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "monique_2017_07_10",
+    "title": "monique",
+    "year": "2017",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/monique_2017-07-10.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "santa_monica_2016_12_01",
+    "title": "santa monica",
+    "year": "2016",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/santa_monica_2016_12_01.mp4",
+    "notes": "super 8 short film.",
+    "credits": "drew waters"
+  },
+  {
+    "id": "santa_monica_pier_2016_12_01",
+    "title": "santa monica pier",
+    "year": "2016",
+    "format": "super 8",
+    "poster": "",
+    "video": "https://drewprototypes.s3.us-west-1.amazonaws.com/drew-waters-music.com/film_video/santa_monica_pier_2016_12_01.mp4",
+    "notes": "super 8 short film.",
     "credits": "drew waters"
   }
 ]
