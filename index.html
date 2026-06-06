@@ -907,7 +907,7 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
         if (activeCard) {
           activeCard.scrollIntoView({
             behavior: "smooth",
-            block: "nearest"
+            block: "start"
           });
         }
       }, 0);
@@ -1139,7 +1139,7 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
         if (activeCard) {
           activeCard.scrollIntoView({
             behavior: "smooth",
-            block: "nearest"
+            block: "start"
           });
         }
       }, 0);
