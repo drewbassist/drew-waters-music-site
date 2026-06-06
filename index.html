@@ -763,33 +763,43 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
   }
 
   function switchSection(section) {
-    currentSection = section;
+    currentSection = section === "films" ? "films" : "music";
 
     try {
-      localStorage.setItem("dw-current-section", section);
+      localStorage.setItem("dw-current-section", currentSection);
     } catch (error) {
       console.warn("could not save current section", error);
+    }
+
+    if (currentSection === "films") {
+      history.replaceState(null, "", "#films");
+    } else {
+      history.replaceState(null, "", "#music");
     }
 
     document.querySelectorAll(".dw-nav-item").forEach(item => {
       item.classList.remove("active");
     });
 
-    if (section === "music") {
+    if (currentSection === "music") {
       document.querySelectorAll(".dw-nav-item")[0].classList.add("active");
       restoreMusicPlayerShell();
       renderAlbums();
       renderPlayer();
+      return;
     }
 
-    if (section === "films") {
+    if (currentSection === "films") {
       document.querySelectorAll(".dw-nav-item")[1].classList.add("active");
       renderFilms();
       renderFilmPlayer();
+      return;
     }
   }
 
   function renderFilms() {
+    if (currentSection !== "films") return;
+
     const albumList = document.getElementById("albumList");
     if (!albumList || !Array.isArray(films)) return;
 
@@ -821,6 +831,16 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
       media.currentTime = 0;
     });
 
+    currentSection = "films";
+
+    try {
+      localStorage.setItem("dw-current-section", "films");
+    } catch (error) {
+      console.warn("could not save current section", error);
+    }
+
+    history.replaceState(null, "", "#films");
+
     currentFilm = index;
     saveCurrentFilm(index);
     renderFilms();
@@ -828,6 +848,8 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
   }
 
   function renderFilmPlayer() {
+    if (currentSection !== "films") return;
+
     const film = films[currentFilm];
     if (!film) return;
 
@@ -868,6 +890,8 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
   }
 
   function renderAlbums() {
+    if (currentSection !== "music") return;
+
     const albumList = document.getElementById("albumList");
     if (!albumList || !Array.isArray(albums)) return;
 
@@ -945,6 +969,8 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
   }
 
   function renderPlayer() {
+    if (currentSection !== "music") return;
+
     const album = albums[currentAlbum];
 
     if (!album) return;
@@ -1007,6 +1033,16 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
   }
 
   function selectAlbum(index) {
+    currentSection = "music";
+
+    try {
+      localStorage.setItem("dw-current-section", "music");
+    } catch (error) {
+      console.warn("could not save current section", error);
+    }
+
+    history.replaceState(null, "", "#music");
+
     document.querySelectorAll("audio, video").forEach(media => {
       media.pause();
       media.currentTime = 0;
@@ -1084,16 +1120,21 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
       mobileOpenAlbum = window.innerWidth <= 850 ? currentAlbum : -1;
 
       try {
-        currentSection = localStorage.getItem("dw-current-section") || "music";
+        const savedSection = localStorage.getItem("dw-current-section");
+        const hashSection = window.location.hash === "#films" ? "films" : "";
+
+        currentSection = hashSection || savedSection || "music";
       } catch (error) {
+        currentSection = window.location.hash === "#films" ? "films" : "music";
+      }
+
+      if (currentSection !== "films") {
         currentSection = "music";
       }
 
-      if (currentSection === "films") {
-        switchSection("films");
-      } else {
-        switchSection("music");
+      switchSection(currentSection);
 
+      if (currentSection === "music") {
         if (window.innerWidth > 850) {
           scrollActiveAlbumIntoView("center");
         } else {
