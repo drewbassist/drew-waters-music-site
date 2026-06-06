@@ -428,7 +428,7 @@
 <script>
   let albums = [];
   let films = [];
-let mobileOpenFilm = -1;
+  let mobileOpenFilm = -1;
   let currentAlbum = 0;
   let currentFilm = 0;
   let mobileOpenAlbum = -1;
@@ -803,11 +803,16 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
     const albumList = document.getElementById("albumList");
     if (!albumList || !Array.isArray(films)) return;
 
+    const activeFilmIndex =
+      window.innerWidth <= 850
+        ? mobileOpenFilm
+        : currentFilm;
+
     albumList.innerHTML =
       films.map((film, index) => `
         <div class="dw-album-wrap">
           <div
-            class="dw-album-card ${index === currentFilm ? "active" : ""}"
+            class="dw-album-card ${index === activeFilmIndex ? "active" : ""}"
             onclick="selectFilm(${index})"
           >
             ${
@@ -821,6 +826,43 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
               <div class="dw-album-meta">${film.year || ""}</div>
             </div>
           </div>
+
+          ${
+            window.innerWidth <= 850 &&
+            index === mobileOpenFilm
+              ? `
+                <div class="dw-mobile-player">
+                  <div class="dw-now-title">${film.title}</div>
+                  <div class="dw-now-album">${film.year || ""} ${film.format ? "· " + film.format : ""}</div>
+
+                  ${
+                    film.video
+                      ? `
+                        <video
+                          controls
+                          playsinline
+                          preload="metadata"
+                          poster="${film.poster || film.cover || ""}"
+                          style="
+                            width:100%;
+                            border-radius:12px;
+                            margin:18px 0 24px 0;
+                            display:block;
+                            background:#000;
+                          "
+                        >
+                          <source src="${film.video}" type="video/mp4">
+                        </video>
+                      `
+                      : `<div class="dw-album-notes">video coming soon</div>`
+                  }
+
+                  <div class="dw-album-notes">${film.notes || ""}</div>
+                  <div class="dw-credits">${film.credits || ""}</div>
+                </div>
+              `
+              : ""
+          }
         </div>
       `).join("");
   }
@@ -840,6 +882,31 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
     }
 
     history.replaceState(null, "", "#films");
+
+    if (window.innerWidth <= 850) {
+      if (mobileOpenFilm === index) {
+        mobileOpenFilm = -1;
+      } else {
+        mobileOpenFilm = index;
+      }
+
+      currentFilm = index;
+      saveCurrentFilm(index);
+      renderFilms();
+
+      setTimeout(() => {
+        const activeCard = document.querySelector(".dw-album-card.active");
+
+        if (activeCard) {
+          activeCard.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      }, 0);
+
+      return;
+    }
 
     currentFilm = index;
     saveCurrentFilm(index);
@@ -1117,7 +1184,12 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
 
       currentAlbum = getSavedAlbumIndex();
       currentFilm = getSavedFilmIndex();
-      mobileOpenAlbum = window.innerWidth <= 850 ? currentAlbum : -1;
+
+      mobileOpenAlbum =
+        window.innerWidth <= 850 ? currentAlbum : -1;
+
+      mobileOpenFilm =
+        window.innerWidth <= 850 ? currentFilm : -1;
 
       try {
         const savedSection = localStorage.getItem("dw-current-section");
