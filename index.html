@@ -557,14 +557,22 @@
     return 0;
   }
 
-  function scrollActiveAlbumIntoView(blockPosition = "center") {
+  function scrollActiveAlbumIntoView() {
     setTimeout(() => {
       const activeCard = document.querySelector(".dw-album-card.active");
+      const list = document.getElementById("albumList");
 
-      if (activeCard) {
+      if (!activeCard || !list) return;
+
+      const cardTop = activeCard.offsetTop;
+      const cardBottom = cardTop + activeCard.offsetHeight;
+      const viewTop = list.scrollTop;
+      const viewBottom = viewTop + list.clientHeight;
+
+      if (cardTop < viewTop || cardBottom > viewBottom) {
         activeCard.scrollIntoView({
           behavior: "auto",
-          block: blockPosition
+          block: "nearest"
         });
       }
     }, 100);
@@ -1151,6 +1159,7 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
 
     renderAlbums();
     renderPlayer();
+    scrollActiveAlbumIntoView();
   }
 
   function openLightbox() {
@@ -1214,9 +1223,9 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
 
       if (currentSection === "music") {
         if (window.innerWidth > 850) {
-          scrollActiveAlbumIntoView("center");
+          scrollActiveAlbumIntoView();
         } else {
-          scrollActiveAlbumIntoView("start");
+          scrollActiveAlbumIntoView();
         }
       }
     } catch (error) {
@@ -1245,7 +1254,7 @@ ${(album.tracks || []).map((track, index) => `${index + 1}. ${track.title || "un
 
       if (window.innerWidth > 850) {
         renderPlayer();
-        scrollActiveAlbumIntoView("center");
+        scrollActiveAlbumIntoView();
       }
     }
 
